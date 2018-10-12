@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Metadata -->
+        <meta charset="UTF-8">
+        <meta name="language" content="EN">
+        <meta name="description" content="Hunter Parcells' Personal Website">
+        <meta name="keywords" content="HTML,CSS,JavaScript,NodeJS,Java,Games">
+        <meta name="author" content="Hunter Parcells">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="identifier-url" content="https://hparcells.me/">
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="css/main.css">
+        
+        <title>3 - 5 - 7</title>
+    </head>
+
+    <body>
+        <div id="headerInfo">
+            <h1>3 - 5 - 7</h1>
+            <p><b>Goal</b>: Get your opponent to turn the last mark red.</p>
+
+            <h3>Rules</h3>
+            <ol>
+                <li>You may turn as many marks as you want red, but they have to be in the same row.</li>
+                <li>You must mark at least one line each turn.</li>
+                <li>You may not turn marks back green.</li>
+                <li>Your turn ends when you are done making marks red.</li>
+                <li>You win the game when your opponent crosses of the last red mark.</li>
+            </ol>
+        </div>
+
+        <hr>
+
+        <!-- Game Objects -->
+        <div id="game">
+            <h2 id="status">Current Turn: <span id="player">Player 1</span></h2>
+
+            <button id="1" class="gameButton row1" onclick="doLogic(this.className, this.id)"></button>
+            <button id="2" class="gameButton row1" onclick="doLogic(this.className, this.id)"></button>
+            <button id="3" class="gameButton row1" onclick="doLogic(this.className, this.id)"></button>
+
+            <br>
+
+            <button id="4" class="gameButton row2" onclick="doLogic(this.className, this.id)"></button>
+            <button id="5" class="gameButton row2" onclick="doLogic(this.className, this.id)"></button>
+            <button id="6" class="gameButton row2" onclick="doLogic(this.className, this.id)"></button>
+            <button id="7" class="gameButton row2" onclick="doLogic(this.className, this.id)"></button>
+            <button id="8" class="gameButton row2" onclick="doLogic(this.className, this.id)"></button>
+
+            <br>
+
+            <button id="9" class="gameButton row3" onclick="doLogic(this.className, this.id)"></button>
+            <button id="10" class="gameButton row3" onclick="doLogic(this.className, this.id)"></button>
+            <button id="11" class="gameButton row3" onclick="doLogic(this.className, this.id)"></button>
+            <button id="12" class="gameButton row3" onclick="doLogic(this.className, this.id)"></button>
+            <button id="13" class="gameButton row3" onclick="doLogic(this.className, this.id)"></button>
+            <button id="14" class="gameButton row3" onclick="doLogic(this.className, this.id)"></button>
+            <button id="15" class="gameButton row3" onclick="doLogic(this.className, this.id)"></button>
+
+            <br>
+
+            <button id="doneButton" class="button" onclick="endTurn()">You Must Mark At Least One Line</button>
+        </div>
+
+        <!-- Game Script -->
+        <script src="js/game.js"></script>
+    </body>
+</html>
