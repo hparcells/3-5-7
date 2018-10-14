@@ -3,8 +3,9 @@ var marked = 0;
 var selectedRow = undefined;
 var win = false;
 
+var playerLabel = document.getElementById("player");
+
 const doneButton = document.getElementById("doneButton");
-const playerLabel = document.getElementById("player");
 const statusLabel = document.getElementById("status");
 const gameButton = document.getElementsByClassName("gameButton");
 
@@ -40,12 +41,18 @@ function doLogic(className, idName) {
         selectedRow = row;  
         
         doneButton.style.backgroundColor = greenColor;
-        doneButton.innerHTML = "Next Player"
+        doneButton.innerHTML = "Next Player";
+
+        mark.classList.add("red");
+        marks[parseInt(idName) - 1].isMarked = true;
+        marked++;
+    }else {
+        if(row === selectedRow) {
+            mark.classList.add("red");
+            marks[parseInt(idName) - 1].isMarked = true;
+            marked++;
+        }
     }
-    
-    mark.classList.add("red");
-    marks[parseInt(idName) - 1].isMarked = true;
-    marked++;
 
     checkWin();
 }
@@ -55,18 +62,18 @@ function endTurn() {
         if(marked > 0) {
             if(player === 1) {
                 player = 2;
-        
+
                 playerLabel.innerHTML = "Player 2"
                 playerLabel.style.color = "blue";
             }else {
                 player = 1;
-        
+
                 playerLabel.innerHTML = "Player 1"
                 playerLabel.style.color = "red";
             }
         
             marked = 0;
-    
+
             doneButton.style.backgroundColor = "grey";
             doneButton.innerHTML = "You Must Mark At Least One Line"
         }
@@ -120,8 +127,6 @@ function allMarks() {
 }
 
 function resetGame() {
-    // location.reload();
-
     player = 1;
     marked = 0;
     selectedRow = undefined;
@@ -147,6 +152,8 @@ function resetGame() {
 
     statusLabel.innerHTML = "Current Turn: <span id=\"player\">Player 1</span>";
     statusLabel.style.color = "black";
+
+    playerLabel = document.getElementById("player");
     playerLabel.style.color = "red";
     playerLabel.innerHTML = `Player 1`;
 
@@ -155,5 +162,5 @@ function resetGame() {
 
     for (var i = 0; i < gameButton.length; i++) {
         gameButton[i].classList.remove("red");
-      }
+    }
 }
