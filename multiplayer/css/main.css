@@ -1,0 +1,44 @@
+html, body, h1, h2, h3, h4, h5, h6 {
+    font-family: "Poppins", sans-serif;
+}
+
+ol {
+    display: inline-block;
+    text-align: left;
+
+    margin-left: -20px
+}
+
+.button {
+    background-color: grey;
+    border: none;
+    cursor: pointer;
+
+    margin: 4px 2px;
+
+    width: 200px;
+    height: 50px;
+}
+
+.gameButton {
+    background-color: #4CAF50;
+    border: none;
+    cursor: pointer;
+    
+    margin: 4px 2px;
+
+    width: 25px;
+    height: 100px;
+}
+
+#headerInfo {
+    text-align: center;
+}
+
+#game {
+    text-align: center;
+}
+
+#player {
+    color: red;
+}
