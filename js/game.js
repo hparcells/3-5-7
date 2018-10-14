@@ -6,6 +6,7 @@ var win = false;
 const doneButton = document.getElementById("doneButton");
 const playerLabel = document.getElementById("player");
 const statusLabel = document.getElementById("status");
+const gameButton = document.getElementsByClassName("gameButton");
 
 const greenColor = "#4CAF50";
 
@@ -37,19 +38,14 @@ function doLogic(className, idName) {
     
     if(marked === 0) {
         selectedRow = row;  
-        mark.style.backgroundColor = "red";
-        marks[parseInt(idName) - 1].isMarked = true;
-        marked++;
         
         doneButton.style.backgroundColor = greenColor;
         doneButton.innerHTML = "Next Player"
-    }else {
-        if(row === selectedRow) {
-            mark.style.backgroundColor = "red";
-            marks[parseInt(idName) - 1].isMarked = true;
-            marked++;
-        }
     }
+    
+    mark.classList.add("red");
+    marks[parseInt(idName) - 1].isMarked = true;
+    marked++;
 
     checkWin();
 }
@@ -124,5 +120,40 @@ function allMarks() {
 }
 
 function resetGame() {
-    location.reload();
+    // location.reload();
+
+    player = 1;
+    marked = 0;
+    selectedRow = undefined;
+    win = false;
+
+    marks = [
+        {isMarked: false},
+        {isMarked: false},
+        {isMarked: false},
+        {isMarked: false},
+        {isMarked: false},
+        {isMarked: false},
+        {isMarked: false},
+        {isMarked: false},
+        {isMarked: false},
+        {isMarked: false},
+        {isMarked: false},
+        {isMarked: false},
+        {isMarked: false},
+        {isMarked: false},
+        {isMarked: false},
+    ];
+
+    statusLabel.innerHTML = "Current Turn: <span id=\"player\">Player 1</span>";
+    statusLabel.style.color = "black";
+    playerLabel.style.color = "red";
+    playerLabel.innerHTML = `Player 1`;
+
+    doneButton.style.backgroundColor = "grey";
+    doneButton.innerHTML = "You Must Mark At Least One Line";
+
+    for (var i = 0; i < gameButton.length; i++) {
+        gameButton[i].classList.remove("red");
+      }
 }

@@ -21,7 +21,6 @@ ol {
 }
 
 .gameButton {
-    background-color: #4CAF50;
     border: none;
     cursor: pointer;
     
@@ -29,6 +28,14 @@ ol {
 
     width: 25px;
     height: 100px;
+}
+
+.green {
+    background-color: #4CAF50;
+}
+
+.red {
+    background-color: red !important;
 }
 
 #headerInfo {
