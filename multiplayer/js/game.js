@@ -85,6 +85,14 @@ function connectToServer() {
                 game.classList.remove("hidden");
 
                 playerLabel.innerHTML = users[0];
+
+                if(isMyTurn()) {
+                    doneButton.style.backgroundColor = "grey";
+                    doneButton.innerHTML = "You Must Mark At Least One Line";
+                }else {
+                    doneButton.style.backgroundColor = "grey";
+                    doneButton.innerHTML = "Wait for Your Opponent";
+                }
             }else {
                 game.classList.add("hidden");
             }
