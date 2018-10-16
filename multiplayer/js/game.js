@@ -103,36 +103,52 @@ function connectToServer() {
         var row = classes[1].substring(3);
 
         if(marks[parseInt(idName) - 1].isMarked) return;
+            if(marked === 0) {
+                selectedRow = row;
 
-        if(marked === 0) {
-            selectedRow = row;  
-            
-            doneButton.style.backgroundColor = greenColor;
-            doneButton.innerHTML = "Next Player";
-    
-            mark.classList.add("red");
-            marks[parseInt(idName) - 1].isMarked = true;
-            marked++;
-        }else {
-            if(row === selectedRow) {
+                if(isMyTurn()) {
+                    doneButton.style.backgroundColor = greenColor;
+                    doneButton.innerHTML = "Next Player";
+                }
+                
                 mark.classList.add("red");
                 marks[parseInt(idName) - 1].isMarked = true;
+
                 marked++;
+            }else {
+                if(row === selectedRow) {
+                    mark.classList.add("red");
+                    marks[parseInt(idName) - 1].isMarked = true;
+        
+                    marked++;
+                }
             }
-        }
-    
+
         checkWin();
-
-        socket.emit("updatedMarkList", marks);
     });
 
-    socket.on("updatedMarks", function(data) {
-        marks = data;
+    socket.on("turnUpdate", function(data) {
+        player = data;
+        marked = 0;
+
+        if(player === 1) {
+            playerLabel.style.color = "red";
+        }else {
+            playerLabel.style.color = "blue";
+        }
+
+        playerLabel.innerHTML = users[data - 1];
+
+        console.log(`Switching to Player ${data}.`);
+
+        if(isMyTurn()) {
+            doneButton.style.backgroundColor = "grey";
+            doneButton.innerHTML = "You Must Mark At Least One Line";
+        }else {
+            doneButton.style.backgroundColor = "grey";
+            doneButton.innerHTML = "Wait for Your Opponent";
+        }
     })
-
-    socket.on("switchTurns", function(data){
-
-    });
 
     socket.on("win", function(data){
 
@@ -145,7 +161,19 @@ function disconnectFromServer() {
 }
 
 function doLogic(className, idName) {
-    socket.emit("updatedMark", className, idName);
+    if(isMyTurn()) {
+        socket.emit("updatedMark", className, idName);
+    }
+}
+
+function endTurn() {
+    if(!win) {
+        if(isMyTurn() && marked > 0) {
+            socket.emit("switchTurns", player);   
+        }
+    }else {
+        // TODO: Win Stuff
+    }
 }
 
 function checkWin() {
@@ -190,4 +218,8 @@ function allMarks() {
             marks[12].isMarked === true &&
             marks[13].isMarked === true &&
             marks[14].isMarked === true;
+}
+
+function isMyTurn() {
+    return users[player - 1] === username.value;
 }
