@@ -1,5 +1,5 @@
 # 3-5-7
-A Fifteen Line Game
+A 15 line game turn based game about turning marks red, the person to turn the last mark red loses.
 
 ## Play
 Click [here](https://hparcells.me/games/3-5-7/) to play.
