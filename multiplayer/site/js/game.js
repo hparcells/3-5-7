@@ -43,8 +43,9 @@ const statusLabel = document.getElementById("status");
 const gameButton = document.getElementsByClassName("gameButton");
 
 function connectToServer() {
-    console.log(`Connecting ${username.value} to http://${serverIP.value}:${serverPort.value}...`);
-    socket = io(`http://${serverIP.value}:${serverPort.value}`);
+    console.log(`Connecting ${username.value} to ${location.protocol}//${serverIP.value}:${serverPort.value}...`);
+    
+    socket = io.connect(`${location.protocol}//${serverIP.value}:${serverPort.value}`);
 
     serverStatus.innerHTML = "Connecting..."
     serverStatus.style.color = "yellow";
@@ -54,7 +55,7 @@ function connectToServer() {
         serverStatus.innerHTML = "Connected";
         serverStatus.style.color = "green";
 
-        console.log(`Connected ${username.value} to http://${serverIP.value}:${serverPort.value}.`);
+        console.log(`Connected ${username.value} to ${location.protocol}//${serverIP.value}:${serverPort.value}.`);
 
         serverPanel.style.display = "none";
 
@@ -203,11 +204,7 @@ function checkWin() {
         doneButton.innerHTML = "Reset Game"
 
         win = true;
-
-        return true;
     }
-
-    return false;
 }
 
 function allMarks() {
