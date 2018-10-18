@@ -46,10 +46,15 @@ function connectToServer() {
     console.log(`Connecting ${username.value} to ${location.protocol}//${serverIP.value}:${serverPort.value}...`);
     
     socket = io.connect(`${location.protocol}//${serverIP.value}:${serverPort.value}`);
+    
+    var connectTimer = setTimeout(function() {
+        socket.close();
+        serverStatus.innerHTML = "Disconnected (Took Too Long To Connect)";
+        serverStatus.style.color = "red";
+    }, 10000);
 
     serverStatus.innerHTML = "Connecting..."
     serverStatus.style.color = "yellow";
-    
 
     socket.on('connect', function(){
         serverStatus.innerHTML = "Connected";
@@ -63,6 +68,8 @@ function connectToServer() {
         disconnectButton.disabled = false;
 
         socket.emit("newPlayer", username.value);
+
+        clearTimeout(connectTimer);
     });
     
     socket.on('disconnect', function(){
@@ -157,16 +164,16 @@ function connectToServer() {
             doneButton.style.backgroundColor = "grey";
             doneButton.innerHTML = "Wait for Your Opponent";
         }
-    })
-
-    socket.on("win", function(data){
-
     });
 }
 
 function disconnectFromServer() {
     socket.emit("playerDisconnect", username.value);
     socket.close();
+
+    if(win) {
+        location.reload();
+    }
 }
 
 function doLogic(className, idName) {
@@ -181,7 +188,8 @@ function endTurn() {
             socket.emit("switchTurns", player);   
         }
     }else {
-        // TODO: Win Stuff
+        socket.emit("reset", true);
+        disconnectFromServer();
     }
 }
 
