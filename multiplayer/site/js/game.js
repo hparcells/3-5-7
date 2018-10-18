@@ -43,128 +43,142 @@ const statusLabel = document.getElementById("status");
 const gameButton = document.getElementsByClassName("gameButton");
 
 function connectToServer() {
-    console.log(`Connecting ${username.value} to ${location.protocol}//${serverIP.value}:${serverPort.value}...`);
-    
-    socket = io.connect(`${location.protocol}//${serverIP.value}:${serverPort.value}`);
-    
-    var connectTimer = setTimeout(function() {
-        socket.close();
-        serverStatus.innerHTML = "Disconnected (Took Too Long To Connect)";
-        serverStatus.style.color = "red";
-    }, 10000);
-
-    serverStatus.innerHTML = "Connecting..."
-    serverStatus.style.color = "yellow";
-
-    socket.on('connect', function(){
-        serverStatus.innerHTML = "Connected";
-        serverStatus.style.color = "green";
-
-        console.log(`Connected ${username.value} to ${location.protocol}//${serverIP.value}:${serverPort.value}.`);
-
-        serverPanel.style.display = "none";
-
-        connectButton.disabled = true;
-        disconnectButton.disabled = false;
-
-        socket.emit("newPlayer", username.value);
-
-        clearTimeout(connectTimer);
-    });
-    
-    socket.on('disconnect', function(){
-        serverStatus.innerHTML = "Disconnected";
-        serverStatus.style.color = "red";
-
-        connectButton.disabled = false;
-        disconnectButton.disabled = true;
-
-        serverPanel.style.display = "block";
-        game.classList.add("hidden");
-
-        console.log(`Disconnected ${username.value} to http://${serverIP.value}:${serverPort.value}.`);
-    });
-
-    socket.on("playerUpdate", function(data){
-        users = data;
+    if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(serverIP.value) || serverIP.value === "localhost") {
+        if(!isNaN(serverPort.value)) {
+            if(!username.value == "") {
+                console.log(`Connecting ${username.value} to ${location.protocol}//${serverIP.value}:${serverPort.value}...`);
         
-        if(users.length <= 2) {
-            if(users.length === 2) {
-                game.classList.remove("hidden");
-
-                playerLabel.innerHTML = users[0];
-
-                if(isMyTurn()) {
-                    doneButton.style.backgroundColor = "grey";
-                    doneButton.innerHTML = "You Must Mark At Least One Line";
-                }else {
-                    doneButton.style.backgroundColor = "grey";
-                    doneButton.innerHTML = "Wait for Your Opponent";
-                }
-            }else {
-                game.classList.add("hidden");
-            }
-
-            console.log(users);
-        }else if(users.length > 2 && username.value === users[2]){
-            socket.emit("playerDisconnect", username.value);
-            
-            socket.close();
-        }
-    });
-
-    socket.on("markUpdate", function(className, idName){
-        var mark = document.getElementById(idName);
-        var classes = className.split(" ");
-        var row = classes[1].substring(3);
-
-        if(marks[parseInt(idName) - 1].isMarked) return;
-            if(marked === 0) {
-                selectedRow = row;
-
-                if(isMyTurn()) {
-                    doneButton.style.backgroundColor = greenColor;
-                    doneButton.innerHTML = "Next Player";
-                }
+                socket = io.connect(`${location.protocol}//${serverIP.value}:${serverPort.value}`);
+                serverStatus.innerHTML = "Connecting..."
+                serverStatus.style.color = "yellow";
                 
-                mark.classList.add("red");
-                marks[parseInt(idName) - 1].isMarked = true;
-
-                marked++;
+                var connectTimer = setTimeout(function() {
+                    socket.close();
+                    serverStatus.innerHTML = "Disconnected (Took Too Long To Connect)";
+                    serverStatus.style.color = "red";
+                }, 10000);
+    
+                socket.on('connect', function(){
+                    serverStatus.innerHTML = "Connected";
+                    serverStatus.style.color = "green";
+    
+                    console.log(`Connected ${username.value} to ${location.protocol}//${serverIP.value}:${serverPort.value}.`);
+    
+                    serverPanel.style.display = "none";
+    
+                    connectButton.disabled = true;
+                    disconnectButton.disabled = false;
+    
+                    socket.emit("newPlayer", username.value);
+    
+                    clearTimeout(connectTimer);
+                });
+                
+                socket.on('disconnect', function(){
+                    serverStatus.innerHTML = "Disconnected";
+                    serverStatus.style.color = "red";
+    
+                    connectButton.disabled = false;
+                    disconnectButton.disabled = true;
+    
+                    serverPanel.style.display = "block";
+                    game.classList.add("hidden");
+    
+                    console.log(`Disconnected ${username.value} to http://${serverIP.value}:${serverPort.value}.`);
+                });
+    
+                socket.on("playerUpdate", function(data){
+                    users = data;
+                    
+                    if(users.length <= 2) {
+                        if(users.length === 2) {
+                            game.classList.remove("hidden");
+    
+                            playerLabel.innerHTML = users[0];
+    
+                            if(isMyTurn()) {
+                                doneButton.style.backgroundColor = "grey";
+                                doneButton.innerHTML = "You Must Mark At Least One Line";
+                            }else {
+                                doneButton.style.backgroundColor = "grey";
+                                doneButton.innerHTML = "Wait for Your Opponent";
+                            }
+                        }else {
+                            game.classList.add("hidden");
+                        }
+    
+                        console.log(users);
+                    }else if(users.length > 2 && username.value === users[2]){
+                        socket.emit("playerDisconnect", username.value);
+                        
+                        socket.close();
+                    }
+                });
+    
+                socket.on("markUpdate", function(className, idName){
+                    var mark = document.getElementById(idName);
+                    var classes = className.split(" ");
+                    var row = classes[1].substring(3);
+    
+                    if(marks[parseInt(idName) - 1].isMarked) return;
+                        if(marked === 0) {
+                            selectedRow = row;
+    
+                            if(isMyTurn()) {
+                                doneButton.style.backgroundColor = greenColor;
+                                doneButton.innerHTML = "Next Player";
+                            }
+                            
+                            mark.classList.add("red");
+                            marks[parseInt(idName) - 1].isMarked = true;
+    
+                            marked++;
+                        }else {
+                            if(row === selectedRow) {
+                                mark.classList.add("red");
+                                marks[parseInt(idName) - 1].isMarked = true;
+                    
+                                marked++;
+                            }
+                        }
+    
+                    checkWin();
+                });
+    
+                socket.on("turnUpdate", function(data) {
+                    player = data;
+                    marked = 0;
+    
+                    if(player === 1) {
+                        playerLabel.style.color = "red";
+                    }else {
+                        playerLabel.style.color = "blue";
+                    }
+    
+                    playerLabel.innerHTML = users[data - 1];
+    
+                    console.log(`Switching to Player ${data}.`);
+    
+                    if(isMyTurn()) {
+                        doneButton.style.backgroundColor = "grey";
+                        doneButton.innerHTML = "You Must Mark At Least One Line";
+                    }else {
+                        doneButton.style.backgroundColor = "grey";
+                        doneButton.innerHTML = "Wait for Your Opponent";
+                    }
+                });
             }else {
-                if(row === selectedRow) {
-                    mark.classList.add("red");
-                    marks[parseInt(idName) - 1].isMarked = true;
-        
-                    marked++;
-                }
+                serverStatus.innerHTML = "Disconnected (Username is Not Valid)";
+                serverStatus.style.color = "red";
             }
-
-        checkWin();
-    });
-
-    socket.on("turnUpdate", function(data) {
-        player = data;
-        marked = 0;
-
-        if(player === 1) {
-            playerLabel.style.color = "red";
         }else {
-            playerLabel.style.color = "blue";
+            serverStatus.innerHTML = "Disconnected (Port is Not Valid)";
+            serverStatus.style.color = "red";
         }
-
-        playerLabel.innerHTML = users[data - 1];
-
-        console.log(`Switching to Player ${data}.`);
-
-        if(isMyTurn()) {
-            doneButton.style.backgroundColor = "grey";
-            doneButton.innerHTML = "You Must Mark At Least One Line";
-        }else {
-            doneButton.style.backgroundColor = "grey";
-            doneButton.innerHTML = "Wait for Your Opponent";
-        }
-    });
+    }else {
+        serverStatus.innerHTML = "Disconnected (IP is Not Valid)";
+        serverStatus.style.color = "red";
+    }
 }
 
 function disconnectFromServer() {
