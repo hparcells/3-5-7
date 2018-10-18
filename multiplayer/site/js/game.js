@@ -172,6 +172,7 @@ function disconnectFromServer() {
     socket.close();
 
     if(win) {
+        socket.emit("reset");
         location.reload();
     }
 }
