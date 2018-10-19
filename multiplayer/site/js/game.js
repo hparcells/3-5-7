@@ -115,10 +115,8 @@ function connectToServer() {
                     }
                 });
     
-                socket.on("markUpdate", function(className, idName){
+                socket.on("markUpdate", function(row, idName){
                     var mark = document.getElementById(idName);
-                    var classes = className.split(" ");
-                    var row = classes[1].substring(3);
     
                     if(marks[parseInt(idName) - 1].isMarked) return;
                         if(marked === 0) {
@@ -191,9 +189,12 @@ function disconnectFromServer() {
     }
 }
 
-function doLogic(className, idName) {
+function doLogic(className, mark) {
+    var classes = className.split(" ");
+    var row = classes[1].substring(3);
+
     if(isMyTurn()) {
-        socket.emit("updatedMark", className, idName);
+        socket.emit("updatedMark", row, mark);
     }
 }
 
