@@ -31,7 +31,7 @@ var marks = [
 
 var player = 1;
 var marked = 0;
-var selectedRow = undefined;
+var selectedRow;
 var win = false;
 
 const greenColor = "#4CAF50";
