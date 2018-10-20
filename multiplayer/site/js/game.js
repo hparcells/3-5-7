@@ -40,7 +40,6 @@ var playerLabel = document.getElementById("player");
 
 const doneButton = document.getElementById("doneButton");
 const statusLabel = document.getElementById("status");
-const gameButton = document.getElementsByClassName("gameButton");
 
 function connectToServer() {
     if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(serverIP.value) || serverIP.value === "localhost") {
@@ -49,7 +48,7 @@ function connectToServer() {
                 console.log(`Connecting ${username.value} to ${location.protocol}//${serverIP.value}:${serverPort.value}...`);
         
                 socket = io.connect(`${location.protocol}//${serverIP.value}:${serverPort.value}`);
-                serverStatus.innerHTML = "Connecting..."
+                serverStatus.innerHTML = "Connecting...";
                 serverStatus.style.color = "yellow";
                 
                 var connectTimer = setTimeout(function() {
@@ -58,7 +57,7 @@ function connectToServer() {
                     serverStatus.style.color = "red";
                 }, 10000);
     
-                socket.on('connect', function(){
+                socket.on("connect", function(){
                     serverStatus.innerHTML = "Connected";
                     serverStatus.style.color = "green";
     
@@ -74,7 +73,7 @@ function connectToServer() {
                     clearTimeout(connectTimer);
                 });
                 
-                socket.on('disconnect', function(){
+                socket.on("disconnect", function(){
                     serverStatus.innerHTML = "Disconnected";
                     serverStatus.style.color = "red";
     
@@ -118,27 +117,28 @@ function connectToServer() {
                 socket.on("markUpdate", function(row, idName){
                     var mark = document.getElementById(idName);
     
-                    if(marks[parseInt(idName) - 1].isMarked) return;
-                        if(marked === 0) {
-                            selectedRow = row;
-    
-                            if(isMyTurn()) {
-                                doneButton.style.backgroundColor = greenColor;
-                                doneButton.innerHTML = "Next Player";
-                            }
-                            
-                            mark.classList.add("red");
-                            marks[parseInt(idName) - 1].isMarked = true;
-    
-                            marked++;
-                        }else {
-                            if(row === selectedRow) {
-                                mark.classList.add("red");
-                                marks[parseInt(idName) - 1].isMarked = true;
-                    
-                                marked++;
-                            }
+                    if(marks[parseInt(idName) - 1].isMarked) {
+                        return;
+                    }
+
+                    if(marked === 0) {
+                        selectedRow = row;
+
+                        if(isMyTurn()) {
+                            doneButton.style.backgroundColor = greenColor;
+                            doneButton.innerHTML = "Next Player";
                         }
+                        
+                        mark.classList.add("red");
+                        marks[parseInt(idName) - 1].isMarked = true;
+
+                        marked++;
+                    }else if(row === selectedRow) {
+                        mark.classList.add("red");
+                        marks[parseInt(idName) - 1].isMarked = true;
+            
+                        marked++;
+                    }
     
                     checkWin();
                 });
@@ -225,7 +225,7 @@ function checkWin() {
         statusLabel.innerHTML = `Player ${users[winningPlayer - 1]} Wins!`;
 
         doneButton.style.backgroundColor = greenColor;
-        doneButton.innerHTML = "Reset Game"
+        doneButton.innerHTML = "Reset Game";
 
         win = true;
     }

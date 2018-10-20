@@ -1,6 +1,6 @@
 var player = 1;
 var marked = 0;
-var selectedRow = undefined;
+var selectedRow;
 var win = false;
 
 var playerLabel = document.getElementById("player");
@@ -32,10 +32,12 @@ var marks = [
 function doLogic(className, idName) {
     var mark = document.getElementById(idName);
     
-    classes = className.split(" ");
+    var classes = className.split(" ");
     var row = classes[1].substring(3);
     
-    if(marks[parseInt(idName) - 1].isMarked) return;
+    if(marks[parseInt(idName) - 1].isMarked) {
+        return;
+    }
     
     if(marked === 0) {
         selectedRow = row;  
@@ -63,19 +65,19 @@ function endTurn() {
             if(player === 1) {
                 player = 2;
 
-                playerLabel.innerHTML = "Player 2"
+                playerLabel.innerHTML = "Player 2";
                 playerLabel.style.color = "blue";
             }else {
                 player = 1;
 
-                playerLabel.innerHTML = "Player 1"
+                playerLabel.innerHTML = "Player 1";
                 playerLabel.style.color = "red";
             }
         
             marked = 0;
 
             doneButton.style.backgroundColor = "grey";
-            doneButton.innerHTML = "You Must Mark At Least One Line"
+            doneButton.innerHTML = "You Must Mark At Least One Line";
         }
     }else {
         resetGame();
@@ -98,7 +100,7 @@ function checkWin() {
         statusLabel.innerHTML = `Player ${winningPlayer} Wins!`;
 
         doneButton.style.backgroundColor = greenColor;
-        doneButton.innerHTML = "Reset Game"
+        doneButton.innerHTML = "Reset Game";
 
         win = true;
 
@@ -129,7 +131,7 @@ function allMarks() {
 function resetGame() {
     player = 1;
     marked = 0;
-    selectedRow = undefined;
+    selectedRow = "";
     win = false;
 
     marks = [
@@ -155,7 +157,7 @@ function resetGame() {
 
     playerLabel = document.getElementById("player");
     playerLabel.style.color = "red";
-    playerLabel.innerHTML = `Player 1`;
+    playerLabel.innerHTML = "Player 1";
 
     doneButton.style.backgroundColor = "grey";
     doneButton.innerHTML = "You Must Mark At Least One Line";
