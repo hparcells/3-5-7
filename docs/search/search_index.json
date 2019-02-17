@@ -1,0 +1,209 @@
+{
+    "docs": [
+        {
+            "location": "/",
+            "text": "3-5-7 Documentation\n\u00b6\n\n\nWelcome to the 3-5-7 documentation! Here you can find how to use the 3-5-7 server and get help if you need it.\n\n\nServer Usage\n\u00b6\n\n\nYou are probably here to find how to use the 3-5-7 server. If so, please follow the \nLAN Server Guide\n to setup a server on your local network people can connect to.\n\n\nCompleted Project\n\u00b6\n\n\nThe completed status of this project means I will not be actively developing this, other than small bug fixes, and responding to pull requests and issues represented by the maintained badge. You can feel free to open a pull request with new features if you choose to do so.",
+            "title": "Home"
+        },
+        {
+            "location": "/#3-5-7-documentation",
+            "text": "Welcome to the 3-5-7 documentation! Here you can find how to use the 3-5-7 server and get help if you need it.",
+            "title": "3-5-7 Documentation"
+        },
+        {
+            "location": "/#server-usage",
+            "text": "You are probably here to find how to use the 3-5-7 server. If so, please follow the  LAN Server Guide  to setup a server on your local network people can connect to.",
+            "title": "Server Usage"
+        },
+        {
+            "location": "/#completed-project",
+            "text": "The completed status of this project means I will not be actively developing this, other than small bug fixes, and responding to pull requests and issues represented by the maintained badge. You can feel free to open a pull request with new features if you choose to do so.",
+            "title": "Completed Project"
+        },
+        {
+            "location": "/help/",
+            "text": "Help\n\u00b6\n\n\nSomething not working? Check if your question or error is answered here!\n\n\nThe multiplayer game isn't loading!\n\u00b6\n\n\nTry the following:\n\n\n\n\nTry loading unsafe scripts. You can do this in Google Chrome by clicking the shield in the address bar, and clicking \nLoad unsafe scripts\n. This is because I am using an iframe to load the game, because browsers don't like self signed certificates.\n\n\n\n\n.\n\n\n\n\nIf you do not want to load unsafe scripts (you maybe don't trust me), you can navigate to \nhttp://3-5-7.surge.sh/\n which is where the iframe points anyways.\n\n\n\n\nThe multiplayer server isn't starting.\n\u00b6\n\n\nTry the following:\n\n\n\n\nInstalling NodeJS (again).\n\n\nChange the port from 3000 to something else.\n\n\nTry using a different version of the server.\n\n\n\n\nI can't connect to the server.\n\u00b6\n\n\nTry the following:\n\n\n\n\nTry connecting to all the IPv4 addresses listed when starting the server.\n\n\nIf you are connecting to a public server, did the host port foward?\n\n\nAre you on the same network as the server.\n\n\nTry disabling your VPN (if you are using one).",
+            "title": "Help"
+        },
+        {
+            "location": "/help/#help",
+            "text": "Something not working? Check if your question or error is answered here!",
+            "title": "Help"
+        },
+        {
+            "location": "/help/#the-multiplayer-game-isnt-loading",
+            "text": "Try the following:   Try loading unsafe scripts. You can do this in Google Chrome by clicking the shield in the address bar, and clicking  Load unsafe scripts . This is because I am using an iframe to load the game, because browsers don't like self signed certificates.   .   If you do not want to load unsafe scripts (you maybe don't trust me), you can navigate to  http://3-5-7.surge.sh/  which is where the iframe points anyways.",
+            "title": "The multiplayer game isn't loading!"
+        },
+        {
+            "location": "/help/#the-multiplayer-server-isnt-starting",
+            "text": "Try the following:   Installing NodeJS (again).  Change the port from 3000 to something else.  Try using a different version of the server.",
+            "title": "The multiplayer server isn't starting."
+        },
+        {
+            "location": "/help/#i-cant-connect-to-the-server",
+            "text": "Try the following:   Try connecting to all the IPv4 addresses listed when starting the server.  If you are connecting to a public server, did the host port foward?  Are you on the same network as the server.  Try disabling your VPN (if you are using one).",
+            "title": "I can't connect to the server."
+        },
+        {
+            "location": "/server/lan/",
+            "text": "LAN Usage\n\u00b6\n\n\nThis guide will show you how to setup a server on your local network, that anyone connected to this network will be able to join. If you want to you may setup a \nPublic Server\n which anyone can connect to.\n\n\nThis guide will be written for Windows users.\n\n\nDownloading and Setting Up the Server\n\u00b6\n\n\nThe first step is to download the server. To do this, click \nhere\n for the latest version of the server or go the the GitHub page \nhere\n and select a version of the server you want to download.\n\n\nYou will have to download \nNodeJS\n to actually get the server running. When you install this, be sure to install the \nnpm package manager\n.\n\n\nStarting the Server\n\u00b6\n\n\nTime to actually get the server running. Run the \n_First Time Install.bat\n file. This should install all the needed packages for the server. If everything is setup correctly, when you run the \n_Start Server.bat\n file, the server should start running, along with logging the IPs your clients can connect to.\n\n\nThe default port is set to 3000, but you can change this by editing the \nindex.js\n file. At the top of the file there is \nconst port = 3000;\n. You will want to change this to whatever you like. \nDon't forget to save!\n\n\nIf you need help, see the \nhelp page\n.",
+            "title": "LAN Usage"
+        },
+        {
+            "location": "/server/lan/#lan-usage",
+            "text": "This guide will show you how to setup a server on your local network, that anyone connected to this network will be able to join. If you want to you may setup a  Public Server  which anyone can connect to.  This guide will be written for Windows users.",
+            "title": "LAN Usage"
+        },
+        {
+            "location": "/server/lan/#downloading-and-setting-up-the-server",
+            "text": "The first step is to download the server. To do this, click  here  for the latest version of the server or go the the GitHub page  here  and select a version of the server you want to download.  You will have to download  NodeJS  to actually get the server running. When you install this, be sure to install the  npm package manager .",
+            "title": "Downloading and Setting Up the Server"
+        },
+        {
+            "location": "/server/lan/#starting-the-server",
+            "text": "Time to actually get the server running. Run the  _First Time Install.bat  file. This should install all the needed packages for the server. If everything is setup correctly, when you run the  _Start Server.bat  file, the server should start running, along with logging the IPs your clients can connect to.  The default port is set to 3000, but you can change this by editing the  index.js  file. At the top of the file there is  const port = 3000; . You will want to change this to whatever you like.  Don't forget to save!  If you need help, see the  help page .",
+            "title": "Starting the Server"
+        },
+        {
+            "location": "/server/public/",
+            "text": "Public Usage\n\u00b6\n\n\nAssuming you already know how to setup a LAN server, this should be fairly easy. All you need to do is port foward.\n\n\nThis guide will be written for Windows users.\n\n\nPort Fowarding\n\u00b6\n\n\nFor people to connect to your server from anywhere, you need to open a port in your network. To get to your router control panel, open the command prompt and use the \nipconfig\n command and look for your \nDefault Gateway\n. Once you have this, navigate to that IP in your browser. It may ask you for a username and password, the username is most of the time, \nadmin\n and the password is most of the time \npassword\n. If this does not work, you can check it at \nhttp://www.routerpasswords.com/\n.\n\n\nOnce you are logged into your router, you want to try to find the port fowarding area which would most likely be under \nAdvanced Settings\n. If you can not find it, just do a quick google search of, \n(Your Router Manufacturer) Port Fowarding\n. Once you find the port fowarding area, you will want to add the port you set when you were setting up the server, or if you haven't changed the port, \nthe port will be 3000\n.\n\n\nPeople should now be able to connect to the server using your \nPublic IP Addess\n. Do not give this to untrusted people. You can check if your port is open by using \nhttp://www.canyouseeme.org/\n and checking the port you fowarded \nwhile the server is running\n. You should see a message that says \nSuccess: I can see your service on (Your Public IP) on port (Your Port)\n.",
+            "title": "Public Usage"
+        },
+        {
+            "location": "/server/public/#public-usage",
+            "text": "Assuming you already know how to setup a LAN server, this should be fairly easy. All you need to do is port foward.  This guide will be written for Windows users.",
+            "title": "Public Usage"
+        },
+        {
+            "location": "/server/public/#port-fowarding",
+            "text": "For people to connect to your server from anywhere, you need to open a port in your network. To get to your router control panel, open the command prompt and use the  ipconfig  command and look for your  Default Gateway . Once you have this, navigate to that IP in your browser. It may ask you for a username and password, the username is most of the time,  admin  and the password is most of the time  password . If this does not work, you can check it at  http://www.routerpasswords.com/ .  Once you are logged into your router, you want to try to find the port fowarding area which would most likely be under  Advanced Settings . If you can not find it, just do a quick google search of,  (Your Router Manufacturer) Port Fowarding . Once you find the port fowarding area, you will want to add the port you set when you were setting up the server, or if you haven't changed the port,  the port will be 3000 .  People should now be able to connect to the server using your  Public IP Addess . Do not give this to untrusted people. You can check if your port is open by using  http://www.canyouseeme.org/  and checking the port you fowarded  while the server is running . You should see a message that says  Success: I can see your service on (Your Public IP) on port (Your Port) .",
+            "title": "Port Fowarding"
+        },
+        {
+            "location": "/game-development/getting-started/",
+            "text": "Getting Started\n\u00b6\n\n\nSo you decided to make your own 3-5-7 game. If you decide to make a multiplayer feature for your game, this guide will help you.\n\n\nThis guide will not tell you \nhow\n to make your game (that is up to you), it will tell you what data to listen for, and how to process that data, and maybe a couple examples here and there.\n\n\nIn summary, the way the client and server interacts together is as follows, \nno data is processed right away\n, instead it is send to the server, then sent back to all the players then to process and display.",
+            "title": "Getting Started"
+        },
+        {
+            "location": "/game-development/getting-started/#getting-started",
+            "text": "So you decided to make your own 3-5-7 game. If you decide to make a multiplayer feature for your game, this guide will help you.  This guide will not tell you  how  to make your game (that is up to you), it will tell you what data to listen for, and how to process that data, and maybe a couple examples here and there.  In summary, the way the client and server interacts together is as follows,  no data is processed right away , instead it is send to the server, then sent back to all the players then to process and display.",
+            "title": "Getting Started"
+        },
+        {
+            "location": "/game-development/socketio/",
+            "text": "Using SocketIO\n\u00b6\n\n\nI use SocketIO for the server to communicate data. SocketIO supports multiple languages such as \nJavaScript\n which I use, \nJava\n, \nC++\n, \nSwift\n, and \nDart\n. \n\n\nChoose your languge, download the source, and continue. JavaScript is recommended as the examples in this documentation is in JavaScript.",
+            "title": "Using SocketIO"
+        },
+        {
+            "location": "/game-development/socketio/#using-socketio",
+            "text": "I use SocketIO for the server to communicate data. SocketIO supports multiple languages such as  JavaScript  which I use,  Java ,  C++ ,  Swift , and  Dart .   Choose your languge, download the source, and continue. JavaScript is recommended as the examples in this documentation is in JavaScript.",
+            "title": "Using SocketIO"
+        },
+        {
+            "location": "/game-development/connecting/",
+            "text": "Connecting and New Players\n\u00b6\n\n\nWhat's the use of a client that is never connected to a server? Lets get connected.\n\n\nConnecting to a Server\n\u00b6\n\n\nTo connect, use your connect function to connect to the server. The following is JavaScript code.\n\n\nvar\n \nsocket\n \n=\n \nio\n.\nconnect\n(\n`http://localhost:3000`\n);\n\n\n\n\n\n\nRecommendations\n\u00b6\n\n\n\n\nIt is \nhighly\n recommended that \nlocalhost\n and the port \n3000\n should be variables that the user should enter in text boxes. \n\n\nYou should also run some checks to see if the IP is a valid IP, and the port is a valid port.\n\n\nYou should add a timer, if it takes more than at most ten seconds to connect to the server, stop connecting and tell the user it took to long to connect.\n\n\n\n\nSending a New Player to the Server\n\u00b6\n\n\nAlong with connecting to the server, there also should be a text box for a username. When the client is connected to the server (which should be your connect event), you have to emit a \nnewPlayer\n event with the username as the parameter. The following is exammple JavaScript code.\n\n\nsocket\n.\non\n(\n'connect'\n,\n \nfunction\n()\n \n{\n\n    \nsocket\n.\nemit\n(\n\"newPlayer\"\n,\n \nusername\n);\n\n\n});\n\n\n\n\n\n\nRecommendations\n\u00b6\n\n\n\n\nYou \nshould\n check if the username is blank before connecting.\n\n\n\n\nHandling New Players\n\u00b6\n\n\nYou must listen for the \nplayerUpdate\n event. The data is the current array of players and their usernames. You would want to store the array of players on the client as an array, and when you get a \nplayerUpdate\n event, update that array. \n\n\nIf there are already two players in the game, the client should disconnect from the server and emit a \nplayerDisconnect\n event with the username as the value.\n\n\nRecommendations\n\u00b6\n\n\n\n\nYou should hide the game until two players have joined.",
+            "title": "Connecting and New Players"
+        },
+        {
+            "location": "/game-development/connecting/#connecting-and-new-players",
+            "text": "What's the use of a client that is never connected to a server? Lets get connected.",
+            "title": "Connecting and New Players"
+        },
+        {
+            "location": "/game-development/connecting/#connecting-to-a-server",
+            "text": "To connect, use your connect function to connect to the server. The following is JavaScript code.  var   socket   =   io . connect ( `http://localhost:3000` );",
+            "title": "Connecting to a Server"
+        },
+        {
+            "location": "/game-development/connecting/#recommendations",
+            "text": "It is  highly  recommended that  localhost  and the port  3000  should be variables that the user should enter in text boxes.   You should also run some checks to see if the IP is a valid IP, and the port is a valid port.  You should add a timer, if it takes more than at most ten seconds to connect to the server, stop connecting and tell the user it took to long to connect.",
+            "title": "Recommendations"
+        },
+        {
+            "location": "/game-development/connecting/#sending-a-new-player-to-the-server",
+            "text": "Along with connecting to the server, there also should be a text box for a username. When the client is connected to the server (which should be your connect event), you have to emit a  newPlayer  event with the username as the parameter. The following is exammple JavaScript code.  socket . on ( 'connect' ,   function ()   { \n     socket . emit ( \"newPlayer\" ,   username );  });",
+            "title": "Sending a New Player to the Server"
+        },
+        {
+            "location": "/game-development/connecting/#recommendations_1",
+            "text": "You  should  check if the username is blank before connecting.",
+            "title": "Recommendations"
+        },
+        {
+            "location": "/game-development/connecting/#handling-new-players",
+            "text": "You must listen for the  playerUpdate  event. The data is the current array of players and their usernames. You would want to store the array of players on the client as an array, and when you get a  playerUpdate  event, update that array.   If there are already two players in the game, the client should disconnect from the server and emit a  playerDisconnect  event with the username as the value.",
+            "title": "Handling New Players"
+        },
+        {
+            "location": "/game-development/connecting/#recommendations_2",
+            "text": "You should hide the game until two players have joined.",
+            "title": "Recommendations"
+        },
+        {
+            "location": "/game-development/marks/",
+            "text": "Updating Marks and Winning\n\u00b6\n\n\nUpdating marks happens when you click a mark and turn it red for both clients.\n\n\nMarking Marks\n\u00b6\n\n\nOkay, the first step of updating a mark is sending to to the server by emitting an \nupdatedMark\n event with two parameters. Fist, the row as a number such as 1, 2, or 3. This is the way you should set it up, as it makes row checking easier. Secondly, the mark number which is a number ranging from 1 - 15. The following is example JavaScript code, where row is the row number, and mark is the mark number being updated.\n\n\nif\n(\nisMyTurn\n())\n \n{\n\n    \nsocket\n.\nemit\n(\n\"updatedMark\"\n,\n \nrow\n,\n \nmark\n);\n\n\n}\n\n\n\n\n\n\nRecommendations\n\u00b6\n\n\n\n\nYou should have a variable named \nplayer\n that either holds the value 1 or 2, represeting what player's turn it is. \nThe first person to connect to the server is always player one.\n\n\nYou should have a function named \nisMyTurn()\n that returns true or false if it is the client's turn or not to reduce code duplication. You can easily check if its your turn by checking if the client's username is the same as \nusers[player - 1]\n since all the usernames are stored in users or whatever you named your array of usernames. \nplayer\n is the current player either 1 or 2.\n\n\nYou should keep a variable each turn named \nmarked\n which keeps track of the number of marks marked in the turn, to make switching turns easier.\n\n\n\n\nOnce you send this data to the server, you will now have to listen for the new updated marks.\n\n\nRecieving New Marks\n\u00b6\n\n\nOnce you send marks to the server, you will get marks back from the server. You will get the data as a \nmarkUpdate\n event you have to listen for. There will be two parameters you you get with the event. First, the row number as a number, and next, the mark number which is a number ranging from 1- 15. \nYou should have an array of objects\n or something similar where you can simply do \nmarks[theMarkID - 1].isMarked\n where that is true or false. This would make checking if a mark is updated or not, and actually taking action if so easier. When you get this data, you should do nothing if the mark requesting to be changed is marked already. If it isn't, set it to marked, display it as marked in the game, and check if the user has lost.\n\n\nRecommendations\n\u00b6\n\n\n\n\nYou should have some sort of screen or label telling the user to wait as their opponent is taking their turn.\n\n\n\n\nWinning\n\u00b6\n\n\nWhen you check for a win you first have to check if all the marks are marked, then set you label you have setup to something like \nPlayer x Wins!\n.\n\n\nRecommendations\n\u00b6\n\n\n\n\nThe check win checks should be in a function and should either return true or false.\n\n\nChecking if all marks are marked or not should be in a \nallMarks()\n function or something similar and return true or false accordingly.\n\n\nWhen the win happens, the button that switches turns, should now say \nReset Game\n or \nReload Game\n. See the \nDisconnecting from a Server\n page and the \nSwitching Turns\n page.\n\n\nYou might want to think about having a variable named \nwin\n or something similar to set to true when a user wins, just to make life a little bit easier.",
+            "title": "Updating Marks and Winning"
+        },
+        {
+            "location": "/game-development/marks/#updating-marks-and-winning",
+            "text": "Updating marks happens when you click a mark and turn it red for both clients.",
+            "title": "Updating Marks and Winning"
+        },
+        {
+            "location": "/game-development/marks/#marking-marks",
+            "text": "Okay, the first step of updating a mark is sending to to the server by emitting an  updatedMark  event with two parameters. Fist, the row as a number such as 1, 2, or 3. This is the way you should set it up, as it makes row checking easier. Secondly, the mark number which is a number ranging from 1 - 15. The following is example JavaScript code, where row is the row number, and mark is the mark number being updated.  if ( isMyTurn ())   { \n     socket . emit ( \"updatedMark\" ,   row ,   mark );  }",
+            "title": "Marking Marks"
+        },
+        {
+            "location": "/game-development/marks/#recommendations",
+            "text": "You should have a variable named  player  that either holds the value 1 or 2, represeting what player's turn it is.  The first person to connect to the server is always player one.  You should have a function named  isMyTurn()  that returns true or false if it is the client's turn or not to reduce code duplication. You can easily check if its your turn by checking if the client's username is the same as  users[player - 1]  since all the usernames are stored in users or whatever you named your array of usernames.  player  is the current player either 1 or 2.  You should keep a variable each turn named  marked  which keeps track of the number of marks marked in the turn, to make switching turns easier.   Once you send this data to the server, you will now have to listen for the new updated marks.",
+            "title": "Recommendations"
+        },
+        {
+            "location": "/game-development/marks/#recieving-new-marks",
+            "text": "Once you send marks to the server, you will get marks back from the server. You will get the data as a  markUpdate  event you have to listen for. There will be two parameters you you get with the event. First, the row number as a number, and next, the mark number which is a number ranging from 1- 15.  You should have an array of objects  or something similar where you can simply do  marks[theMarkID - 1].isMarked  where that is true or false. This would make checking if a mark is updated or not, and actually taking action if so easier. When you get this data, you should do nothing if the mark requesting to be changed is marked already. If it isn't, set it to marked, display it as marked in the game, and check if the user has lost.",
+            "title": "Recieving New Marks"
+        },
+        {
+            "location": "/game-development/marks/#recommendations_1",
+            "text": "You should have some sort of screen or label telling the user to wait as their opponent is taking their turn.",
+            "title": "Recommendations"
+        },
+        {
+            "location": "/game-development/marks/#winning",
+            "text": "When you check for a win you first have to check if all the marks are marked, then set you label you have setup to something like  Player x Wins! .",
+            "title": "Winning"
+        },
+        {
+            "location": "/game-development/marks/#recommendations_2",
+            "text": "The check win checks should be in a function and should either return true or false.  Checking if all marks are marked or not should be in a  allMarks()  function or something similar and return true or false accordingly.  When the win happens, the button that switches turns, should now say  Reset Game  or  Reload Game . See the  Disconnecting from a Server  page and the  Switching Turns  page.  You might want to think about having a variable named  win  or something similar to set to true when a user wins, just to make life a little bit easier.",
+            "title": "Recommendations"
+        },
+        {
+            "location": "/game-development/switching-turns/",
+            "text": "Switching Turns\n\u00b6\n\n\nOnce you are done marking marks, you need to end your turn.\n\n\nEnding a Turn\n\u00b6\n\n\nIf you have decided to store a variable named \nwin\n or something similar, you need to check if that is false. If you didn't you need to check if someone won. If it is true, continue to the \nDisconnecting from a Server\n page, if not, continue reading. \n\n\nBefore you emit the \nswitchTurns\n event, you want to check if the amount of marks marked in the turn is greater than zero, and is it is your turn, if not, do nothing. Once you check this, you can now emit the \nswitchTurns\n event with the player number as the parameter. The following is example JavaScript code. Where \nwin\n is true or false if the game is won, \nisMyTurn()\n is if it's the current user's turn, \nmarked\n is the amount of marks marked in that turn, and \nplayer\n is the current player number 1 or 2.\n\n\nif\n(\n!\nwin\n)\n \n{\n\n    \nif\n(\nisMyTurn\n()\n \n&&\n \nmarked\n \n>\n \n0\n)\n \n{\n\n        \nsocket\n.\nemit\n(\n\"switchTurns\"\n,\n \nplayer\n);\n   \n    \n}\n\n\n}\n\n\n\n\n\n\nNow you need to listen for the \nturnUpdate\n event. The only data coming through is the next player. You will want to set your player number (1 or 2) to the data. You also want to set the \nmarked\n variable to zero if you have one which represents the amount of marks marked on that turn, along with changing any labels showing whos turn it is.",
+            "title": "Switching Turns"
+        },
+        {
+            "location": "/game-development/switching-turns/#switching-turns",
+            "text": "Once you are done marking marks, you need to end your turn.",
+            "title": "Switching Turns"
+        },
+        {
+            "location": "/game-development/switching-turns/#ending-a-turn",
+            "text": "If you have decided to store a variable named  win  or something similar, you need to check if that is false. If you didn't you need to check if someone won. If it is true, continue to the  Disconnecting from a Server  page, if not, continue reading.   Before you emit the  switchTurns  event, you want to check if the amount of marks marked in the turn is greater than zero, and is it is your turn, if not, do nothing. Once you check this, you can now emit the  switchTurns  event with the player number as the parameter. The following is example JavaScript code. Where  win  is true or false if the game is won,  isMyTurn()  is if it's the current user's turn,  marked  is the amount of marks marked in that turn, and  player  is the current player number 1 or 2.  if ( ! win )   { \n     if ( isMyTurn ()   &&   marked   >   0 )   { \n         socket . emit ( \"switchTurns\" ,   player );    \n     }  }   Now you need to listen for the  turnUpdate  event. The only data coming through is the next player. You will want to set your player number (1 or 2) to the data. You also want to set the  marked  variable to zero if you have one which represents the amount of marks marked on that turn, along with changing any labels showing whos turn it is.",
+            "title": "Ending a Turn"
+        },
+        {
+            "location": "/game-development/disconnecting/",
+            "text": "Disconnecting from a Server\n\u00b6\n\n\nWhen a game is completed, you should disconnect from the server.\n\n\nWhen you disconnect from the server, you want to emit a \nplayerDisconnect\n event with the user's username as the parameter, then you want to close the socket.\n\n\nIf the game is won, you still want to emit a \nplayerDisconnect\n event with the user's username as the parameter, along with emiting a \nreset\n event with no parameters. Then you may run any code you want to reset the game such as reseting any variables, and reseting the colors of the marks.",
+            "title": "Disconnecting from a Server"
+        },
+        {
+            "location": "/game-development/disconnecting/#disconnecting-from-a-server",
+            "text": "When a game is completed, you should disconnect from the server.  When you disconnect from the server, you want to emit a  playerDisconnect  event with the user's username as the parameter, then you want to close the socket.  If the game is won, you still want to emit a  playerDisconnect  event with the user's username as the parameter, along with emiting a  reset  event with no parameters. Then you may run any code you want to reset the game such as reseting any variables, and reseting the colors of the marks.",
+            "title": "Disconnecting from a Server"
+        }
+    ]
+}
