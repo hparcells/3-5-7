@@ -24,4 +24,4 @@ Get your opponent to turn the last mark red.
 5. You win the game when your opponent turns the last mark red.
 
 ## Documentation
-You can read how to setup the 3-5-7 server at [https://hparcells.me/documentation/3-5-7/site/server/lan/](https://hparcells.me/documentation/3-5-7/site/server/lan/) or you can read how to make your own 3-5-7 game at [https://hparcells.me/documentation/3-5-7/site/game-development/getting-started/](https://hparcells.me/documentation/3-5-7/site/game-development/getting-started/).
+You can read how to setup the 3-5-7 server at [https://3-5-7.netlify.com/server/lan/](https://3-5-7.netlify.com/server/lan/) or you can read how to make your own 3-5-7 game at [https://3-5-7.netlify.com/game-development/getting-started/](https://3-5-7.netlify.com/game-development/getting-started/).
