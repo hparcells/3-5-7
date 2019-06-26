@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   content: {
     maxWidth: '850px',
     margin: 'auto',
-    padding: '1.25em'
+    padding: '1em'
   },
   expanstionPanelRoot: {
     width: '100%'
