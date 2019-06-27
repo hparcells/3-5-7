@@ -39,9 +39,39 @@ io.on('connection', (socket) => {
 
     game[roomCode].players.push(username);
 
-    io.sockets.to(socket.roomCode).emit('gameStart');
+    io.sockets.to(socket.roomCode).emit('gameStart', game[socket.roomCode]);
   });
+  socket.on('requestFirstTimeGameData', () => {
+    io.sockets.to(socket.roomCode).emit('updatedGameData', game[socket.roomCode]);
+  });
+  socket.on('updatedMarks', (newMarks) => {
+    game[socket.roomCode].marks = newMarks;
+    io.sockets.to(socket.roomCode).emit('updatedGameData', game[socket.roomCode]);
 
+    if(!newMarks.includes(false)) {
+      const turn = game[socket.roomCode].turn;
+      let winner;
+      if(turn === 0) {
+        winner = 1;
+      }else {
+        winner = 0;
+      }
+
+      io.sockets.to(socket.roomCode).emit('winner', winner);
+    }
+  });
+  socket.on('nextTurn', () => {
+    let turn = game[socket.roomCode].turn;
+    if(turn === 0) {
+      turn = 1;
+      game[socket.roomCode].turn = turn;
+    }else {
+      turn = 0;
+      game[socket.roomCode].turn = turn;
+    }
+
+    io.sockets.to(socket.roomCode).emit('updatedGameData', game[socket.roomCode]);
+  });
   socket.on('leaveRoom', () => {
     leaveRoom();
     io.sockets.to(socket.roomCode).emit('roomDestroyed');
@@ -49,5 +79,7 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     leaveRoom();
     io.sockets.to(socket.roomCode).emit('roomDestroyed');
+
+    console.log(game)
   });
 });

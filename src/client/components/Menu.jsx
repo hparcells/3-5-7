@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function Menu({ setMode }) {
+function Menu({ setMode, handleAppUsernameChange }) {
   const classes = useStyles();
 
   const [username, setUsername] = useState('');
@@ -80,6 +80,7 @@ function Menu({ setMode }) {
   }
   function handleUsernameChange(event) {
     setUsername(event.target.value);
+    handleAppUsernameChange(event.target.value);
   }
   function handleRoomCodeChange(event) {
     setRoomCode(event.target.value);
