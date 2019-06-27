@@ -95,6 +95,7 @@ function Menu({ setMode, handleAppUsernameChange }) {
 
   function handleLeaveRoom() {
     setRoomCode('');
+    setCodeDialogOpen(false);
     socket.emit('leaveRoom');
   }
   function handleDialogClose() {
