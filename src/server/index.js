@@ -7,7 +7,7 @@ const game = {};
 io.on('connection', (socket) => {
   function leaveRoom() {
     socket.leave(socket.roomCode);
-    delete game.roomCode;
+    delete game[socket.roomCode];
   }
   function roomExists(roomCode) {
     return Object.keys(game).includes(roomCode);
@@ -79,7 +79,5 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     leaveRoom();
     io.sockets.to(socket.roomCode).emit('roomDestroyed');
-
-    console.log(game)
   });
 });
