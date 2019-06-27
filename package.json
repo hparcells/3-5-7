@@ -1,8 +1,8 @@
 {
-  "name": "fullstack-system-boiler-plate",
-  "description": "Boilerplate code for making a server side app using React and Socket.io.",
-  "version": "1.0.0",
-  "author": "Dave Caruso",
+  "name": "3-5-7",
+  "description": "A 15 line game turn based game about turning marks red.",
+  "private": true,
+  "version": "2.0.0",
   "scripts": {
     "start": "fullstack-system dev",
     "dev": "fullstack-system dev",
@@ -23,8 +23,6 @@
   "devDependencies": {
     "babel-eslint": "^10.0.2",
     "css-loader": "^3.0.0",
-    "i": "^0.3.6",
-    "npm": "^6.9.0",
     "style-loader": "^0.23.1"
   }
 }

@@ -83,7 +83,11 @@ function Menu({ setMode, handleAppUsernameChange }) {
     handleAppUsernameChange(event.target.value);
   }
   function handleRoomCodeChange(event) {
-    setRoomCode(event.target.value);
+    const newRoomCode = event.target.value;
+    
+    if(newRoomCode.length < 5) {
+      setRoomCode(newRoomCode.toUpperCase());
+    }
   }
   function toggleGoingToCreateRoom() {
     setGoingToJoinRoom(!goingToJoinRoom);
@@ -226,8 +230,8 @@ function Menu({ setMode, handleAppUsernameChange }) {
               >
                 {
                   goingToJoinRoom
-                    ? 'Create a Room Instead'
-                    : 'Join a Room Instead'
+                    ? 'Create a Room'
+                    : 'Join a Room'
                 }
               </Button>
             </Paper>

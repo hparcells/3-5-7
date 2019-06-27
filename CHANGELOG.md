@@ -4,7 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## 2.0.0
+### Additions
+- Complete rewrite of the game with React using [Dave's Fullstack System](https://github.com/imdaveead/fullstack-system).
+- Rooms! Play with others by inviting them.
+
+### Deletions
+- The server. The server is no longer needed as we have rooms.
 
 ## 1.2.3 [10/20/18]
 ### Additions
