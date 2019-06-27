@@ -4,7 +4,17 @@ import { makeStyles } from '@material-ui/core/styles';
 import { numberIsOrBetweeen } from 'utils/number-utils';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import Slide from '@material-ui/core/Slide';
+
 import Mark from './Mark';
+
+const SlideUpTransition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,6 +35,7 @@ function Local() {
   });
   const [canSubmit, setCanSubmit] = useState(false);
   const [turnModifiedRow, setTurnModifiedRow] = useState(0);
+  const [someoneWon, setSomeoneWon] = useState(false);
 
   function handleMarkClick(index) {
     let rowModified;
@@ -88,6 +99,16 @@ function Local() {
     });
   }
 
+  useEffect(() => {
+    if(!game.marks.includes(false)) {
+      setSomeoneWon(true);
+
+      setTimeout(() => {
+        location.reload();
+      }, 5000);
+    }
+  }, [ game ]);
+
   return (
     <div className={classes.root}>
       <div className={classes.row} style={{
@@ -133,6 +154,17 @@ function Local() {
           End Turn
         </Button>
       </div>
+
+      <Dialog open={someoneWon} TransitionComponent={SlideUpTransition}>
+        <DialogTitle>{
+          game.turn === 0
+            ? 'Player 2 Won'
+            : 'Player 1 Won'
+        }</DialogTitle>
+        <DialogContent>
+          <DialogContentText>You will be redirected to the homepage in five seconds.</DialogContentText>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
