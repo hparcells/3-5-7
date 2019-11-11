@@ -3,6 +3,7 @@ import { Store } from 'redux';
 import { ActionObject } from '../actions';
 
 import menuReducer from './menu-reducer';
+import gameReducer from './game-reducer';
 
 type Reducer = (<T>(state: T, action: ActionObject, fullState: Store) => T) | (<T>(state: T, action: ActionObject) => T);
 
@@ -16,5 +17,6 @@ function combineReducers(reducers: { [name: string]: Reducer }) {
 }
 
 export default combineReducers({
-  menu: menuReducer as Reducer
+  menu: menuReducer as Reducer,
+  game: gameReducer as Reducer
 });

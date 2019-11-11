@@ -2,16 +2,26 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import socket from '../socket';
+
 import { updatePlayerCount } from '../actions';
 import { Store } from '../store';
+import { Scene } from '../reducers/game-reducer';
+
+import Welcome from './scenes/Welcome/Welcome';
+
+import './App.component.scss';
+
+const scenes: { [K in Scene]: JSX.Element } = {
+  WELCOME: <Welcome />
+};
 
 function App(
   {
-    online,
+    scene,
     updatePlayerCount
   }:
   {
-    online: number,
+    scene: Scene,
     updatePlayerCount: (count: number) => void
   }
 ) {
@@ -28,13 +38,13 @@ function App(
 
   return (
     <div>
-      <p>Players Online: {online || 'Fetching...'}</p>
+      {scenes[scene]}
     </div>
   );
 }
 
 const mapStateToProps = (state: Store) => ({
-  online: state.menu.online
+  scene: state.game.scene
 });
 const mapDispatchToProps = {
   updatePlayerCount

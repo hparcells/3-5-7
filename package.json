@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "fullstack-system": "^2.5.0",
+    "node-sass": "^4.13.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-ga": "^2.7.0",

@@ -1,0 +1,26 @@
+.root {
+  width: calc(180px + 10vw);
+  height: 50px;
+
+  margin-top: 10px;
+
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+  background: #95B3FF;
+}
+.buttonText {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 23px;
+
+  display: flex;
+  align-items: center;
+
+  color: #FFFFFF;
+
+  user-select: none;
+}

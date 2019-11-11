@@ -1,8 +1,13 @@
-import { MenuActionObject } from './action-types';
+import { MenuActionObject, GameActionObject } from './action-types';
+import { Scene } from '../reducers/game-reducer';
 
 export function updatePlayerCount(count: number): MenuActionObject {
   return { type: 'UPDATE_PLAYER_COUNT', count };
 }
 export function changeUsername(username: string): MenuActionObject {
   return { type: 'CHANGE_USERNAME', username };
+}
+
+export function changeScene(scene: Scene): GameActionObject {
+  return { type: 'CHANGE_SCENE', scene };
 }
