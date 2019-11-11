@@ -3,6 +3,8 @@
 interface CssExports {
   'buttonWrapper': string;
   'online': string;
+  'restOfPage': string;
+  'root': string;
   'title': string;
 }
 declare var cssExports: CssExports;

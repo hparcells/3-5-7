@@ -18,13 +18,15 @@ function Welcome(
   function handleOnlineClick() {}
 
   return (
-    <div>
+    <div className={classes.root}>
       <p className={classes.title}>3-5-7</p>
       <p className={classes.online}>Players Online: {online || 'Fetching...'}</p>
 
-      <div className={classes.buttonWrapper}>
-        <Button onClick={handleLocalClick}>Play Locally</Button>
-        <Button onClick={handleOnlineClick}>Play Online</Button>
+      <div className={classes.restOfPage}>
+        <div className={classes.buttonWrapper}>
+          <Button onClick={handleLocalClick}>Play Locally</Button>
+          <Button onClick={handleOnlineClick}>Play Online</Button>
+        </div>
       </div>
     </div>
   );

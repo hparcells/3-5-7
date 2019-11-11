@@ -1,9 +1,11 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
-
+.root {
+  height: 100vh;
+  display: flex;
+  flex-flow: column;
+}
 .title {
   margin-top: 70px;
   
-  font-family: 'Roboto';
   font-style: normal;
   font-weight: bold;
   font-size: 50px;
@@ -11,13 +13,16 @@
 
   color: #FFFFFF;
 }
-.buttonWrapper {
-  margin-top: 175px;
-
-  align-items: center;
+.restOfPage {
   display: flex;
   justify-content: center;
+  flex-grow: 1;
+}
+.buttonWrapper {
+  display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   & > * {
     display: flex;
@@ -27,7 +32,6 @@
 .online {
   margin-top: -25px;
 
-  font-family: 'Roboto';
   text-align: center;
   
   color: #FFFFFF;
