@@ -3,16 +3,6 @@
   display: flex;
   flex-flow: column;
 }
-.title {
-  margin-top: 70px;
-  
-  font-style: normal;
-  font-weight: bold;
-  font-size: 50px;
-  text-align: center;
-
-  color: #FFFFFF;
-}
 .restOfPage {
   display: flex;
   justify-content: center;
@@ -24,9 +14,10 @@
   align-items: center;
   justify-content: center;
 
+  width: calc(180px + 10vw);
+
   & > * {
-    display: flex;
-    align-items: center;
+    margin-top: 10px;
   }
 }
 .online {

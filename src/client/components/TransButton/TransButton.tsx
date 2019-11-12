@@ -1,8 +1,8 @@
 import React, { CSSProperties } from 'react';
 
-import classes from './Button.module.scss';
+import classes from './TransButton.module.scss';
 
-function Button(
+function TransButton(
   {
     children,
     onClick,
@@ -23,4 +23,4 @@ function Button(
   );
 }
 
-export default Button;
+export default TransButton;

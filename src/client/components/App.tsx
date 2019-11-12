@@ -8,11 +8,14 @@ import { Store } from '../store';
 import { Scene } from '../reducers/game-reducer';
 
 import Welcome from './scenes/Welcome/Welcome';
+import Multiplayer from './scenes/Multiplayer/Multiplayer';
 
 import './App.component.scss';
 
 const scenes: { [K in Scene]: JSX.Element } = {
-  WELCOME: <Welcome />
+  WELCOME: <Welcome />,
+  MULTIPLAYER: <Multiplayer />,
+  GAME: null as any
 };
 
 function App(
@@ -36,11 +39,7 @@ function App(
     };
   }, []);
 
-  return (
-    <div>
-      {scenes[scene]}
-    </div>
-  );
+  return scenes[scene];
 }
 
 const mapStateToProps = (state: Store) => ({

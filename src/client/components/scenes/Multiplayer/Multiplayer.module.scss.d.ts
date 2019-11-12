@@ -2,7 +2,9 @@
 // Please do not change this file!
 interface CssExports {
   'buttonWrapper': string;
-  'online': string;
+  'multiplayerBox': string;
+  'multiplayerTitle': string;
+  'restOfBox': string;
   'restOfPage': string;
   'root': string;
 }

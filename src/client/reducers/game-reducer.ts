@@ -1,6 +1,6 @@
 import { GameActionObject } from '../actions';
 
-export type Scene = 'WELCOME';
+export type Scene = 'WELCOME' | 'MULTIPLAYER' | 'GAME';
 
 export interface GameState {
   scene: Scene;

@@ -5,21 +5,32 @@ import { Store } from '../../../store';
 import Button from '../../Button/Button';
 
 import classes from './Welcome.module.scss';
+import { changeScene } from '../../../actions';
+import { Scene } from '../../../reducers/game-reducer';
+
+import Title from '../../Title/Title';
 
 function Welcome(
   {
-    online
+    online,
+    changeScene
   }:
   {
-    online: number
+    online: number,
+    changeScene: (scene: Scene) => void
   }
 ) {
-  function handleLocalClick() {}
-  function handleOnlineClick() {}
+  function handleLocalClick() {
+    changeScene('GAME');
+  }
+  function handleOnlineClick() {
+    changeScene('MULTIPLAYER');
+  }
 
   return (
     <div className={classes.root}>
-      <p className={classes.title}>3-5-7</p>
+      <Title />
+
       <p className={classes.online}>Players Online: {online || 'Fetching...'}</p>
 
       <div className={classes.restOfPage}>
@@ -35,5 +46,8 @@ function Welcome(
 const mapStateToProps = (state: Store) => ({
   online: state.menu.online
 });
+const mapDispatchToProps = {
+  changeScene
+};
 
-export default connect(mapStateToProps, {})(Welcome);
+export default connect(mapStateToProps, mapDispatchToProps)(Welcome);
