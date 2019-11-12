@@ -17,5 +17,15 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      window.addEventListener('touchmove', (ev) => { ev.preventDefault(); }, { passive: false });
+
+      window.addEventListener('resize', () => {
+        document.body.style.height = window.innerHeight + 'px';
+        setTimeout(() => {
+          document.body.style.height = window.innerHeight + 'px';
+        }, 100);
+      });
+    </script>
   </body>
 </html>
