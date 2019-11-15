@@ -1,8 +1,8 @@
 {
   "name": "3-5-7",
-  "description": "Boilerplate code for making a server side app using React, Socket.io, and TypeScript.",
-  "version": "1.0.0",
-  "author": "Dave Caruso",
+  "description": "A 15 line game turn based game about turning marks red, the person to turn the last mark red loses.",
+  "version": "3.0.0",
+  "author": "Hunter Parcells",
   "scripts": {
     "start": "fullstack-system dev",
     "dev": "fullstack-system dev",
@@ -11,6 +11,7 @@
     "production": "fullstack-system production"
   },
   "dependencies": {
+    "clsx": "^1.0.4",
     "fullstack-system": "^2.5.0",
     "node-sass": "^4.13.0",
     "react": "^16.8.6",

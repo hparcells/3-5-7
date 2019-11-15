@@ -3,6 +3,7 @@
 interface CssExports {
   'buttonText': string;
   'root': string;
+  'selected': string;
 }
 declare var cssExports: CssExports;
 export = cssExports;
