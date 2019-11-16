@@ -31,8 +31,8 @@
   }
   .restOfBox {
     display: flex;
-    justify-content: center;
     flex-grow: 1;
+    flex-direction: column;
   }
   .buttonWrapper {
     display: flex;

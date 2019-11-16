@@ -1,0 +1,28 @@
+.root {
+  position: relative;
+
+  height: 50px;
+  border: 0px;
+  background-color: #95B3FF;
+
+  transition: 0.3s all;
+
+  margin: 8px;
+  padding-left: 15px;
+}
+.root:hover {
+  background-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.05);
+}
+.root:hover::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+.root::placeholder {
+  color: rgba(82, 39, 39, 0.5);
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: normal;
+  // TODO: Figure this out.
+  // font-size: 20px;
+}
