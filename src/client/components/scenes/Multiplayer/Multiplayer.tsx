@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { Store } from '../../../store';
-import { changeScene, changeGameCreationType, changeUsername, changeRoomCode } from '../../../actions';
+import { changeScene, changeGameCreationType, changeUsername, changeRoomCode, joinGame } from '../../../actions';
 import { Scene } from '../../../reducers/game-reducer';
 
 import Title from '../../Title/Title';
@@ -18,19 +18,23 @@ function Multiplayer(
     gameCreationType,
     username,
     roomCode,
+    onlineError,
     changeScene,
     changeUsername,
     changeRoomCode,
-    changeGameCreationType
+    changeGameCreationType,
+    joinGame
   }:
   {
     gameCreationType: GameCreationType,
     username: string,
     roomCode: string,
+    onlineError: string,
     changeScene: (scene: Scene) => void,
     changeUsername: (username: string) => void,
     changeRoomCode: (roomCode: string) => void,
-    changeGameCreationType: (gameCreationType: GameCreationType) => void
+    changeGameCreationType: (gameCreationType: GameCreationType) => void,
+    joinGame: (gameCreationType: GameCreationType) => void
   }
 ) {
   function handleHostClick() {
@@ -47,6 +51,9 @@ function Multiplayer(
   }
   function handleBackClick() {
     changeScene('WELCOME');
+  }
+  function handleGoClick() {
+    joinGame(gameCreationType);
   }
 
   return (
@@ -78,14 +85,27 @@ function Multiplayer(
             <TextField onChange={handleUsernameChange} value={username}>Username</TextField>
             {
               gameCreationType === 'JOIN_GAME'
-                ? <TextField onChange={handleRoomCodeChange} value={roomCode}>Room Code</TextField>
+                ? <TextField onChange={handleRoomCodeChange} value={roomCode || ''}>Room Code</TextField>
                 : null
             }
+            <p
+              style={{
+                color: 'red',
+                textAlign: 'center',
+                opacity: (onlineError === 'Room codes must be four characters.' && gameCreationType === 'JOIN_GAME')
+                  ? '1'
+                  : onlineError === 'Username must be at least three characters.'
+                    ? '1'
+                    : '0'
+              }}
+            >
+              {onlineError || 'yes'}
+            </p>
           </div>
           <div className={classes.buttonWrapper}>
             <TransButton onClick={handleBackClick} style={{ marginLeft: '30px', marginRight: '10px' }}>Back</TransButton>
             <Button
-              onClick={handleBackClick}
+              onClick={handleGoClick}
               style={{ marginLeft: '10px', marginRight: '30px' }}
             >
               {
@@ -97,7 +117,6 @@ function Multiplayer(
           </div>
         </div>
       </div>
-
     </div>
   );
 }
@@ -105,13 +124,15 @@ function Multiplayer(
 const mapStateToProps = (state: Store) => ({
   gameCreationType: state.menu.gameCreationType,
   username: state.menu.username,
-  roomCode: state.menu.roomCode
+  roomCode: state.menu.roomCode,
+  onlineError: state.menu.onlineError
 });
 const mapDispatchToProps = {
   changeScene,
   changeUsername,
   changeRoomCode,
-  changeGameCreationType
+  changeGameCreationType,
+  joinGame
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Multiplayer);

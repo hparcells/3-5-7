@@ -14,6 +14,12 @@ export function changeUsername(username: string): MenuActionObject {
 export function changeRoomCode(roomCode: string): MenuActionObject {
   return { type: 'CHANGE_ROOM_CODE', roomCode };
 }
+export function joinGame(gameCreationType: GameCreationType): MenuActionObject {
+  return { type: 'JOIN_GAME', gameCreationType };
+}
+export function triggerOnlineError(error: string): MenuActionObject {
+  return { type: 'TRIGGER_ONLINE_ERROR', error };
+}
 
 export function changeScene(scene: Scene): GameActionObject {
   return { type: 'CHANGE_SCENE', scene };
