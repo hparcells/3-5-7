@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+import { connect, Provider } from 'react-redux';
 
 import socket from '../socket';
 
 import { updatePlayerCount } from '../actions';
-import { Store } from '../store';
+import store, { Store } from '../store';
 import { Scene } from '../reducers/game-reducer';
 
 import Welcome from './scenes/Welcome/Welcome';
@@ -39,7 +39,13 @@ function App(
     };
   }, []);
 
-  return scenes[scene];
+  return (
+    <div>
+      <Provider store={store}>
+        {scenes[scene]}
+      </Provider>
+    </div>
+  );
 }
 
 const mapStateToProps = (state: Store) => ({

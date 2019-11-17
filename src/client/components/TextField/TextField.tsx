@@ -11,7 +11,7 @@ function TextField(
   {
     children: string,
     value?: any,
-    onChange?: () => any
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => any
   }
 ) {
   return (
