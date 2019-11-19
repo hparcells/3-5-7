@@ -1,7 +1,8 @@
 import { io } from 'fullstack-system';
-import { Socket } from 'socket.io';
 
-export default function(socket: Socket) {
+import { GameSocket } from '..';
+
+export default function(socket: GameSocket) {
   // I only use setTimeout here because *sometimes* the client never recieves this event.
   setTimeout(() => {
     io.sockets.emit('playerCount', Object.keys(io.sockets.sockets).length);

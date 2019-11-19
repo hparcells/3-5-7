@@ -1,7 +1,7 @@
 import syncReducer from 'sync-reducer';
 
 import { MenuActionObject, triggerOnlineError } from '../actions';
-import store from '../store';
+import socket from '../socket';
 
 export type GameCreationType = 'HOST_GAME' | 'JOIN_GAME';
 
@@ -20,7 +20,7 @@ const initialState: MenuState = {
   roomCode: '',
   gameCreationType: 'HOST_GAME',
   isWaitingForOpponent: false,
-  onlineError: ''
+  onlineError: 'NO_ERROR'
 };
 
 function menuReducer(state: MenuState = initialState, action: MenuActionObject) {
@@ -46,7 +46,7 @@ function menuReducer(state: MenuState = initialState, action: MenuActionObject) 
       newState.username = action.username;
 
       if(newState.onlineError && newState.username.length >= 3) {
-        newState.onlineError = '';
+        newState.onlineError = 'NO_ERROR';
       }
     }
 
@@ -61,8 +61,11 @@ function menuReducer(state: MenuState = initialState, action: MenuActionObject) 
     if(newRoomCode.length <= 4 && /^[A-Z0-9]*$/gm.test(newRoomCode)) {
       newState.roomCode = newRoomCode;
 
-      if(newState.onlineError && newState.roomCode.length === 4) {
-        newState.onlineError = '';
+      if(
+        (newState.onlineError === 'Room codes must be four characters.' && newState.roomCode.length === 4)
+        || newState.onlineError === 'Room does not exist.'
+      ) {
+        newState.onlineError = 'NO_ERROR';
       }
     }
 
@@ -86,9 +89,12 @@ function menuReducer(state: MenuState = initialState, action: MenuActionObject) 
 
         return newState;
       }
+
+      socket.emit('joinRoom', newState.username, newState.roomCode);
     }
     // If we want to host a new game.
     if(action.gameCreationType === 'HOST_GAME') {
+      socket.emit('createRoom', newState.username);
     }
   }
   if(action.type === 'TRIGGER_ONLINE_ERROR') {
@@ -112,7 +118,7 @@ export default syncReducer(
       roomCode: '',
       gameCreationType: state.gameCreationType,
       isWaitingForOpponent: false,
-      onlineError: state.onlineError
+      onlineError: 'NO_ERROR'
     })
   }
 );

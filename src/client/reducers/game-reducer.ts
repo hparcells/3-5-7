@@ -18,6 +18,13 @@ export default function(state: GameState = initialState, action: GameActionObjec
 
     return newState;
   }
+  if(action.type === 'SET_INTIAL_ROOM_DATA') {
+    const newState = { ...state };
+
+    // TODO: Everything
+
+    return newState;
+  }
 
   return state;
 }

@@ -1,5 +1,6 @@
 import { Scene } from '../reducers/game-reducer';
 import { GameCreationType } from '../reducers/menu-reducer';
+import { Room } from '../../shared/types';
 
 export type MenuActionObject
   = { type: 'UPDATE_PLAYER_COUNT', count: number }
@@ -9,8 +10,8 @@ export type MenuActionObject
   | { type: 'JOIN_GAME', gameCreationType: GameCreationType }
   | { type: 'TRIGGER_ONLINE_ERROR', error: string };
 
-// tslint:disable-next-line: interface-over-type-literal
 export type GameActionObject
-  = { type: 'CHANGE_SCENE', scene: Scene };
+  = { type: 'CHANGE_SCENE', scene: Scene }
+  | { type: 'SET_INTIAL_ROOM_DATA', roomData: Room };
 
 export type ActionObject = MenuActionObject | GameActionObject;

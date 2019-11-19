@@ -1,17 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import { Store } from '../../../store';
-import { changeScene, changeGameCreationType, changeUsername, changeRoomCode, joinGame } from '../../../actions';
-import { Scene } from '../../../reducers/game-reducer';
+import {
+  changeScene,
+  changeGameCreationType,
+  changeUsername,
+  changeRoomCode,
+  joinGame,
+  triggerOnlineError,
+  setInitialRoomData
+} from '../../../actions';
+
+import socket from '../../../socket';
 
 import Title from '../../Title/Title';
 import Button from '../../Button/Button';
 import TransButton from '../../TransButton/TransButton';
 import TextField from '../../TextField/TextField';
 
-import classes from './Multiplayer.module.scss';
 import { GameCreationType } from '../../../reducers/menu-reducer';
+import { Scene } from '../../../reducers/game-reducer';
+import { Room } from '../../../../shared/types';
+
+import classes from './Multiplayer.module.scss';
 
 function Multiplayer(
   {
@@ -23,7 +35,9 @@ function Multiplayer(
     changeUsername,
     changeRoomCode,
     changeGameCreationType,
-    joinGame
+    joinGame,
+    triggerOnlineError,
+    setInitialRoomData
   }:
   {
     gameCreationType: GameCreationType,
@@ -34,9 +48,28 @@ function Multiplayer(
     changeUsername: (username: string) => void,
     changeRoomCode: (roomCode: string) => void,
     changeGameCreationType: (gameCreationType: GameCreationType) => void,
-    joinGame: (gameCreationType: GameCreationType) => void
+    joinGame: (gameCreationType: GameCreationType) => void,
+    triggerOnlineError: (error: string) => void,
+    setInitialRoomData: (roomData: Room) => void
   }
 ) {
+  useEffect(() => {
+    function handleServerLoginError(message: string) {
+      triggerOnlineError(message);
+    }
+    function handleInitialRoomData(roomData: Room) {
+      setInitialRoomData(roomData);
+    }
+
+    socket.on('loginError', handleServerLoginError);
+    socket.on('getInitalRoomData', handleInitialRoomData);
+
+    return () => {
+      socket.removeListener('loginError', handleServerLoginError);
+      socket.removeListener('getInitialRoomData', handleInitialRoomData);
+    };
+  }, []);
+
   function handleHostClick() {
     changeGameCreationType('HOST_GAME');
   }
@@ -92,14 +125,15 @@ function Multiplayer(
               style={{
                 color: 'red',
                 textAlign: 'center',
-                opacity: (onlineError === 'Room codes must be four characters.' && gameCreationType === 'JOIN_GAME')
-                  ? '1'
-                  : onlineError === 'Username must be at least three characters.'
-                    ? '1'
-                    : '0'
+                // Dont talk about it.
+                opacity: onlineError === 'NO_ERROR'
+                  ? '0'
+                  : gameCreationType === 'HOST_GAME' && onlineError.toLowerCase().includes('room')
+                    ? '0'
+                    : '1'
               }}
             >
-              {onlineError || 'yes'}
+              {onlineError || 'NO_ERROR'}
             </p>
           </div>
           <div className={classes.buttonWrapper}>
@@ -132,7 +166,9 @@ const mapDispatchToProps = {
   changeUsername,
   changeRoomCode,
   changeGameCreationType,
-  joinGame
+  joinGame,
+  triggerOnlineError,
+  setInitialRoomData
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Multiplayer);
