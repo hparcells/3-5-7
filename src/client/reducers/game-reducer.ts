@@ -1,13 +1,19 @@
 import { GameActionObject } from '../actions';
 
+import { Game } from '../../shared/types';
+
 export type Scene = 'WELCOME' | 'MULTIPLAYER' | 'GAME';
 
 export interface GameState {
   scene: Scene;
+  waitingForJoin: boolean;
+  gameData: Game;
 }
 
 const initialState: GameState = {
-  scene: 'WELCOME'
+  scene: 'WELCOME',
+  waitingForJoin: false,
+  gameData: null as any
 };
 
 export default function(state: GameState = initialState, action: GameActionObject) {
@@ -21,7 +27,8 @@ export default function(state: GameState = initialState, action: GameActionObjec
   if(action.type === 'SET_INTIAL_ROOM_DATA') {
     const newState = { ...state };
 
-    // TODO: Everything
+    newState.gameData = action.gameData;
+    newState.waitingForJoin = true;
 
     return newState;
   }

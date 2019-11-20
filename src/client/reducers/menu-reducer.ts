@@ -1,6 +1,6 @@
 import syncReducer from 'sync-reducer';
 
-import { MenuActionObject, triggerOnlineError } from '../actions';
+import { MenuActionObject } from '../actions';
 import socket from '../socket';
 
 export type GameCreationType = 'HOST_GAME' | 'JOIN_GAME';

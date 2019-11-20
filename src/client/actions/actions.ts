@@ -2,7 +2,7 @@ import { MenuActionObject, GameActionObject } from './action-types';
 
 import { Scene } from '../reducers/game-reducer';
 import { GameCreationType } from '../reducers/menu-reducer';
-import { Room } from '../../shared/types';
+import { Game } from '../../shared/types';
 
 export function updatePlayerCount(count: number): MenuActionObject {
   return { type: 'UPDATE_PLAYER_COUNT', count };
@@ -26,6 +26,6 @@ export function triggerOnlineError(error: string): MenuActionObject {
 export function changeScene(scene: Scene): GameActionObject {
   return { type: 'CHANGE_SCENE', scene };
 }
-export function setInitialRoomData(roomData: Room): GameActionObject {
-  return { type: 'SET_INTIAL_ROOM_DATA', roomData };
+export function setInitialRoomData(gameData: Game): GameActionObject {
+  return { type: 'SET_INTIAL_ROOM_DATA', gameData };
 }

@@ -21,7 +21,7 @@ import TextField from '../../TextField/TextField';
 
 import { GameCreationType } from '../../../reducers/menu-reducer';
 import { Scene } from '../../../reducers/game-reducer';
-import { Room } from '../../../../shared/types';
+import { Game } from '../../../../shared/types';
 
 import classes from './Multiplayer.module.scss';
 
@@ -50,14 +50,14 @@ function Multiplayer(
     changeGameCreationType: (gameCreationType: GameCreationType) => void,
     joinGame: (gameCreationType: GameCreationType) => void,
     triggerOnlineError: (error: string) => void,
-    setInitialRoomData: (roomData: Room) => void
+    setInitialRoomData: (roomData: Game) => void
   }
 ) {
   useEffect(() => {
     function handleServerLoginError(message: string) {
       triggerOnlineError(message);
     }
-    function handleInitialRoomData(roomData: Room) {
+    function handleInitialRoomData(roomData: Game) {
       setInitialRoomData(roomData);
     }
 

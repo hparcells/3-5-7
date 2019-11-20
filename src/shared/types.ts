@@ -1,7 +1,7 @@
 export interface Mark {
   isMarked: boolean;
 }
-export interface Room {
+export interface Game {
   roomCode: string;
   players: string[];
   turn: number;

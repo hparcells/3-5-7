@@ -11,8 +11,11 @@
     "production": "fullstack-system production"
   },
   "dependencies": {
+    "@reverse/array": "^1.7.1",
     "clsx": "^1.0.4",
     "fullstack-system": "^2.5.0",
+    "log-type": "^1.0.0",
+    "logger3": "^1.0.0",
     "node-sass": "^4.13.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
