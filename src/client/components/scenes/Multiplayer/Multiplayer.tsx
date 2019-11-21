@@ -31,6 +31,7 @@ function Multiplayer(
     username,
     roomCode,
     onlineError,
+    isProcessing,
     changeScene,
     changeUsername,
     changeRoomCode,
@@ -44,6 +45,7 @@ function Multiplayer(
     username: string,
     roomCode: string,
     onlineError: string,
+    isProcessing: boolean,
     changeScene: (scene: Scene) => void,
     changeUsername: (username: string) => void,
     changeRoomCode: (roomCode: string) => void,
@@ -103,6 +105,7 @@ function Multiplayer(
               onClick={handleHostClick}
               style={{ marginLeft: '30px', marginRight: '10px' }}
               selected={gameCreationType === 'HOST_GAME'}
+              disabled={isProcessing}
             >
                 Host Game
               </Button>
@@ -110,6 +113,7 @@ function Multiplayer(
               onClick={handleJoinClick}
               style={{ marginLeft: '10px', marginRight: '30px' }}
               selected={gameCreationType === 'JOIN_GAME'}
+              disabled={isProcessing}
             >
               Join Game
             </Button>
@@ -137,10 +141,17 @@ function Multiplayer(
             </p>
           </div>
           <div className={classes.buttonWrapper}>
-            <TransButton onClick={handleBackClick} style={{ marginLeft: '30px', marginRight: '10px' }}>Back</TransButton>
+            <TransButton
+              onClick={handleBackClick}
+              style={{ marginLeft: '30px', marginRight: '10px' }}
+              disabled={isProcessing}
+            >
+              Back
+            </TransButton>
             <Button
               onClick={handleGoClick}
               style={{ marginLeft: '10px', marginRight: '30px' }}
+              disabled={isProcessing}
             >
               {
                 gameCreationType === 'HOST_GAME'
@@ -159,7 +170,8 @@ const mapStateToProps = (state: Store) => ({
   gameCreationType: state.menu.gameCreationType,
   username: state.menu.username,
   roomCode: state.menu.roomCode,
-  onlineError: state.menu.onlineError
+  onlineError: state.menu.onlineError,
+  isProcessing: state.menu.isProcessing
 });
 const mapDispatchToProps = {
   changeScene,

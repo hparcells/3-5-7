@@ -13,25 +13,25 @@ export default function(socket: GameSocket) {
       error('Error when deleting room. Room does not exist. This should never happen.');
     }
 
-    // If two players exist.
-    if(rooms[socket.roomCode].players.length === 2) {
+    // If one player exists.
+    if(rooms[socket.roomCode].players.length === 1) {
       if(!rooms[socket.roomCode].players.includes(socket.username)) {
         error('Error when deleting room. Player does not exist in room. This should never happen.');
         return;
       }
 
+      // Remove the room from the server.
+      delete rooms[socket.roomCode];
+
+      // Log
+      server(`Room '${socket.roomCode}' disbanded.`);
+    }else if(rooms[socket.roomCode].players.length === 2) {
       // Remove the player from the room.
       rooms[socket.roomCode].players = remove(rooms[socket.roomCode].players, socket.username);
 
       // Send news to other player.
-      io.sockets.to(socket.roomCode).emit('OPPONENT_DISCONNECT');
+      io.sockets.to(socket.roomCode).emit('opponentDisconnect');
     }
-
-    // Remove the room from the server.
-    delete rooms[socket.roomCode];
-
-    // Log
-    server(`Room '${socket.roomCode}' disbanded.`);
 
     // Set some socket information.
     // This will not affect the socket if the socket is being disconnected.
@@ -49,7 +49,7 @@ export default function(socket: GameSocket) {
   socket.on('createRoom', (username: string) => {
     // EXtra error checking.
     if(socket.roomCode) {
-      error('Error when creating room. Player is already in room.');
+      error('Error when creating room. Player is already in room. This should never happen.');
       return;
     }
     if(!/^[A-Za-z0-9-_]*$/gm.test(username)) {
@@ -107,17 +107,18 @@ export default function(socket: GameSocket) {
     server(`Room '${roomCode}' created.`);
   });
   socket.on('joinRoom', (username: string, roomCode: string) => {
-    // EXtra error checking.
+    // Error checking.
     if(socket.roomCode) {
-      error('Player is already in room.');
+      error('Error when joining room. Player is already in room. This should never happen.');
       return;
     }
     if(!/^[A-Za-z0-9-_]*$/gm.test(username)) {
-      error('Username is invalid. This should never happen.');
+      error('Error when joining room. Username format is invalid. This should never happen.');
       return;
     }
-    if(!/^[A-Z0-9]*$/gm.test(roomCode)) {
-      error('Room code format is invalid. This should never happen.');
+    if(/^[A-Z0-9]*$/gm.test(roomCode)) {
+      error('Error when joining room. Room code format is invalid. This should never happen.');
+      return;
     }
 
     // Check if the room exists.
@@ -139,7 +140,7 @@ export default function(socket: GameSocket) {
   });
   socket.on('leaveRoom', () => {
     if(!socket.roomCode) {
-      error('Error when leaving room. Player is not in a room.');
+      error('Error when leaving room. Player is not in a room. This should never happen.');
       return;
     }
 

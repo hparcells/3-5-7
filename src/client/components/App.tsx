@@ -32,10 +32,16 @@ function App(
     function handlePlayerCountChange(count: number) {
       updatePlayerCount(count);
     }
+    function handleOpponentDisconnect() {
+      socket.emit('leaveRoom');
+    }
 
     socket.on('playerCount', handlePlayerCountChange);
+    socket.on('opponentDisconnect', handleOpponentDisconnect);
+
     return () => {
       socket.removeListener('playerCount', handlePlayerCountChange);
+      socket.removeListener('opponentDisconnect', handleOpponentDisconnect);
     };
   }, []);
 

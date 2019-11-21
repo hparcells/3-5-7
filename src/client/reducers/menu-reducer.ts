@@ -1,4 +1,5 @@
 import syncReducer from 'sync-reducer';
+import { error } from 'log-type';
 
 import { MenuActionObject } from '../actions';
 import socket from '../socket';
@@ -12,6 +13,7 @@ export interface MenuState {
   gameCreationType: GameCreationType;
   isWaitingForOpponent: boolean;
   onlineError: string;
+  isProcessing: boolean;
 }
 
 const initialState: MenuState = {
@@ -20,7 +22,8 @@ const initialState: MenuState = {
   roomCode: '',
   gameCreationType: 'HOST_GAME',
   isWaitingForOpponent: false,
-  onlineError: 'NO_ERROR'
+  onlineError: 'NO_ERROR',
+  isProcessing: false
 };
 
 function menuReducer(state: MenuState = initialState, action: MenuActionObject) {
@@ -74,6 +77,12 @@ function menuReducer(state: MenuState = initialState, action: MenuActionObject) 
   if(action.type === 'JOIN_GAME') {
     const newState = { ...state };
 
+    // Check if we are waiting for opponent.
+    if(newState.isWaitingForOpponent) {
+      error('Cannot join a game when waiting for a opponent. This should never happen.');
+      return newState;
+    }
+
     // If the username is less than three characters long.
     if(newState.username.length < 3) {
       newState.onlineError = 'Username must be at least three characters.';
@@ -91,16 +100,21 @@ function menuReducer(state: MenuState = initialState, action: MenuActionObject) 
       }
 
       socket.emit('joinRoom', newState.username, newState.roomCode);
+      newState.isProcessing = true;
     }
     // If we want to host a new game.
     if(action.gameCreationType === 'HOST_GAME') {
       socket.emit('createRoom', newState.username);
+      newState.isProcessing = true;
     }
+
+    return newState;
   }
   if(action.type === 'TRIGGER_ONLINE_ERROR') {
     const newState = { ...state };
 
     newState.onlineError = action.error;
+    newState.isProcessing = false;
 
     return newState;
   }
@@ -118,7 +132,8 @@ export default syncReducer(
       roomCode: '',
       gameCreationType: state.gameCreationType,
       isWaitingForOpponent: false,
-      onlineError: 'NO_ERROR'
+      onlineError: 'NO_ERROR',
+      isProcessing: false
     })
   }
 );
