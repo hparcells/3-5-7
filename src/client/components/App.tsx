@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import socket from '../socket';
 
-import { updatePlayerCount } from '../actions';
+import { updatePlayerCount, cleanUpMenu } from '../actions';
 import { Store } from '../store';
 import { Scene } from '../reducers/game-reducer';
 
@@ -21,11 +21,13 @@ const scenes: { [K in Scene]: JSX.Element } = {
 function App(
   {
     scene,
-    updatePlayerCount
+    updatePlayerCount,
+    cleanUpMenu
   }:
   {
     scene: Scene,
-    updatePlayerCount: (count: number) => void
+    updatePlayerCount: (count: number) => void,
+    cleanUpMenu: () => void
   }
 ) {
   useEffect(() => {
@@ -35,13 +37,18 @@ function App(
     function handleOpponentDisconnect() {
       socket.emit('leaveRoom');
     }
+    function handleCleanUpClientMenu() {
+      cleanUpMenu();
+    }
 
     socket.on('playerCount', handlePlayerCountChange);
     socket.on('opponentDisconnect', handleOpponentDisconnect);
+    socket.on('cleanUpClientMenu', handleCleanUpClientMenu);
 
     return () => {
       socket.removeListener('playerCount', handlePlayerCountChange);
       socket.removeListener('opponentDisconnect', handleOpponentDisconnect);
+      socket.removeListener('cleanUpClientMenu', handleCleanUpClientMenu);
     };
   }, []);
 
@@ -52,7 +59,8 @@ const mapStateToProps = (state: Store) => ({
   scene: state.game.scene
 });
 const mapDispatchToProps = {
-  updatePlayerCount
+  updatePlayerCount,
+  cleanUpMenu
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -1,18 +1,18 @@
 import { GameActionObject } from '../actions';
 
+import socket from '../socket';
+
 import { Game } from '../../shared/types';
 
 export type Scene = 'WELCOME' | 'MULTIPLAYER' | 'GAME';
 
 export interface GameState {
   scene: Scene;
-  waitingForJoin: boolean;
   gameData: Game;
 }
 
 const initialState: GameState = {
   scene: 'WELCOME',
-  waitingForJoin: false,
   gameData: null as any
 };
 
@@ -28,7 +28,21 @@ export default function(state: GameState = initialState, action: GameActionObjec
     const newState = { ...state };
 
     newState.gameData = action.gameData;
-    newState.waitingForJoin = true;
+
+    return newState;
+  }
+  if(action.type === 'LEAVE_ROOM') {
+    const newState = { ...state };
+
+    // Tell the server we want to leave.
+    socket.emit('leaveRoom');
+
+    // Reset our data.
+    /**
+     * FIXME: This causes problems, but might be useful to reset in the future.
+     * For now, it works, so let's not touch it.
+     */
+    // newState.gameData = null as any;
 
     return newState;
   }

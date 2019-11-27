@@ -22,10 +22,19 @@ export function joinGame(gameCreationType: GameCreationType): MenuActionObject {
 export function triggerOnlineError(error: string): MenuActionObject {
   return { type: 'TRIGGER_ONLINE_ERROR', error };
 }
+export function menuUpdatedGameData(): MenuActionObject {
+  return { type: 'MENU_UPDATED_GAME_DATA' };
+}
+export function cleanUpMenu(): MenuActionObject {
+  return { type: 'CLEAN_UP_MENU' };
+}
 
 export function changeScene(scene: Scene): GameActionObject {
   return { type: 'CHANGE_SCENE', scene };
 }
 export function setInitialRoomData(gameData: Game): GameActionObject {
   return { type: 'SET_INTIAL_ROOM_DATA', gameData };
+}
+export function leaveRoom(): GameActionObject {
+  return { type: 'LEAVE_ROOM' };
 }

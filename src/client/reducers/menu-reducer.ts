@@ -118,6 +118,22 @@ function menuReducer(state: MenuState = initialState, action: MenuActionObject) 
 
     return newState;
   }
+  if(action.type === 'MENU_UPDATED_GAME_DATA') {
+    const newState = { ...state };
+
+    newState.isWaitingForOpponent = true;
+
+    return newState;
+  }
+  if(action.type === 'CLEAN_UP_MENU') {
+    const newState = { ...state };
+
+    newState.isProcessing = false;
+    newState.isWaitingForOpponent = false;
+    newState.roomCode = '';
+
+    return newState;
+  }
 
   return state;
 }

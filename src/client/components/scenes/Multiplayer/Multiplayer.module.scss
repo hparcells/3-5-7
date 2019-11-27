@@ -16,29 +16,4 @@
 
   display: flex;
   flex-flow: column;
-  
-  
-  .multiplayerTitle {
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: bold;
-    font-size: 25px;
-    line-height: 29px;
-    display: flex;
-    justify-content: center;
-    
-    color: #FFFFFF;
-  }
-  .restOfBox {
-    display: flex;
-    flex-grow: 1;
-    flex-direction: column;
-  }
-  .buttonWrapper {
-    display: flex;
-    
-    & > * {
-      margin-bottom: 21px;
-    }
-  }
 }

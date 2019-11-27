@@ -8,10 +8,13 @@ export type MenuActionObject
   | { type: 'CHANGE_USERNAME', username: string }
   | { type: 'CHANGE_ROOM_CODE', roomCode: string }
   | { type: 'JOIN_GAME', gameCreationType: GameCreationType }
-  | { type: 'TRIGGER_ONLINE_ERROR', error: string };
+  | { type: 'TRIGGER_ONLINE_ERROR', error: string }
+  | { type: 'MENU_UPDATED_GAME_DATA' }
+  | { type: 'CLEAN_UP_MENU' };
 
 export type GameActionObject
   = { type: 'CHANGE_SCENE', scene: Scene }
-  | { type: 'SET_INTIAL_ROOM_DATA', gameData: Game };
+  | { type: 'SET_INTIAL_ROOM_DATA', gameData: Game }
+  | { type: 'LEAVE_ROOM' };
 
 export type ActionObject = MenuActionObject | GameActionObject;

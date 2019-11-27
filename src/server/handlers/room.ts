@@ -25,6 +25,9 @@ export default function(socket: GameSocket) {
 
       // Log
       server(`Room '${socket.roomCode}' disbanded.`);
+
+      // Reset some values on the client;
+      socket.emit('cleanUpClientMenu');
     }else if(rooms[socket.roomCode].players.length === 2) {
       // Remove the player from the room.
       rooms[socket.roomCode].players = remove(rooms[socket.roomCode].players, socket.username);
@@ -110,14 +113,20 @@ export default function(socket: GameSocket) {
     // Error checking.
     if(socket.roomCode) {
       error('Error when joining room. Player is already in room. This should never happen.');
+      socket.emit('loginError', 'Error when joining server. Please try again.');
+
       return;
     }
     if(!/^[A-Za-z0-9-_]*$/gm.test(username)) {
       error('Error when joining room. Username format is invalid. This should never happen.');
+      socket.emit('loginError', 'Error when joining server. Please try again.');
+
       return;
     }
-    if(/^[A-Z0-9]*$/gm.test(roomCode)) {
+    if(!/^[A-Z0-9]*$/gm.test(roomCode)) {
       error('Error when joining room. Room code format is invalid. This should never happen.');
+      socket.emit('loginError', 'Error when joining server. Please try again.');
+
       return;
     }
 
