@@ -44,3 +44,6 @@ export function leaveRoom(): GameActionObject {
 export function setRoomData(gameData: Game): GameActionObject {
   return { type: 'SET_ROOM_DATA', gameData };
 }
+export function prepareLocalGame(): GameActionObject {
+  return { type: 'PREPARE_LOCAL_GAME' };
+}

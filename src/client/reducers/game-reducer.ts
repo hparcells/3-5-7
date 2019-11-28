@@ -46,7 +46,6 @@ export default function(state: GameState = initialState, action: GameActionObjec
 
     return newState;
   }
-
   if(action.type === 'SET_ROOM_DATA') {
     const newState = { ...state };
 
@@ -55,6 +54,40 @@ export default function(state: GameState = initialState, action: GameActionObjec
 
     // Set some values if we haven't already.
     newState.scene = 'GAME';
+
+    return newState;
+  }
+  if(action.type === 'PREPARE_LOCAL_GAME') {
+    const newState = { ...state };
+
+    newState.gameData = {
+      roomCode: 'LOCAL',
+      players: ['Player 1', 'Player 2'],
+      turn: 0,
+      marks: [
+        [
+          { isMarked: false, isSelected: false },
+          { isMarked: false, isSelected: false },
+          { isMarked: false, isSelected: false }
+        ],
+        [
+          { isMarked: false, isSelected: false },
+          { isMarked: false, isSelected: false },
+          { isMarked: false, isSelected: false },
+          { isMarked: false, isSelected: false },
+          { isMarked: false, isSelected: false }
+        ],
+        [
+          { isMarked: false, isSelected: false },
+          { isMarked: false, isSelected: false },
+          { isMarked: false, isSelected: false },
+          { isMarked: false, isSelected: false },
+          { isMarked: false, isSelected: false },
+          { isMarked: false, isSelected: false },
+          { isMarked: false, isSelected: false }
+        ]
+      ]
+    };
 
     return newState;
   }

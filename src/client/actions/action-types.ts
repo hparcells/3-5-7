@@ -17,6 +17,7 @@ export type GameActionObject
   = { type: 'CHANGE_SCENE', scene: Scene }
   | { type: 'SET_INTIAL_ROOM_DATA', gameData: Game }
   | { type: 'LEAVE_ROOM' }
-  | { type: 'SET_ROOM_DATA', gameData: Game };
+  | { type: 'SET_ROOM_DATA', gameData: Game }
+  | { type: 'PREPARE_LOCAL_GAME' };
 
 export type ActionObject = MenuActionObject | GameActionObject;

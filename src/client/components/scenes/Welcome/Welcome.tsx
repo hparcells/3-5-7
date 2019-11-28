@@ -5,7 +5,7 @@ import { Store } from '../../../store';
 import Button from '../../Button/Button';
 
 import classes from './Welcome.module.scss';
-import { changeScene } from '../../../actions';
+import { changeScene, prepareLocalGame } from '../../../actions';
 import { Scene } from '../../../reducers/game-reducer';
 
 import Title from '../../Title/Title';
@@ -13,14 +13,17 @@ import Title from '../../Title/Title';
 function Welcome(
   {
     online,
-    changeScene
+    changeScene,
+    prepareLocalGame
   }:
   {
     online: number,
-    changeScene: (scene: Scene) => void
+    changeScene: (scene: Scene) => void,
+    prepareLocalGame: () => void
   }
 ) {
   function handleLocalClick() {
+    prepareLocalGame();
     changeScene('GAME');
   }
   function handleOnlineClick() {
@@ -47,7 +50,8 @@ const mapStateToProps = (state: Store) => ({
   online: state.menu.online
 });
 const mapDispatchToProps = {
-  changeScene
+  changeScene,
+  prepareLocalGame
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Welcome);
