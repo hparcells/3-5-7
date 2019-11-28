@@ -26,8 +26,6 @@ export default function(socket: GameSocket) {
       // Log
       server(`Room '${socket.roomCode}' disbanded.`);
 
-      // Reset some values on the client;
-      socket.emit('cleanUpClientMenu');
     }else if(rooms[socket.roomCode].players.length === 2) {
       // Remove the player from the room.
       rooms[socket.roomCode].players = remove(rooms[socket.roomCode].players, socket.username);
@@ -35,6 +33,12 @@ export default function(socket: GameSocket) {
       // Send news to other player.
       io.sockets.to(socket.roomCode).emit('opponentDisconnect');
     }
+
+    // Reset some values on the client;
+    socket.emit('cleanUpClientMenu');
+
+    // Leave the Socket.IO room.
+    socket.leave(socket.roomCode);
 
     // Set some socket information.
     // This will not affect the socket if the socket is being disconnected.
@@ -71,27 +75,27 @@ export default function(socket: GameSocket) {
       roomCode,
       players: [username],
       turn: 0,
-      gameData: [
+      marks: [
         [
-          { isMarked: false },
-          { isMarked: false },
-          { isMarked: false }
+          { isMarked: false, isSelected: false },
+          { isMarked: false, isSelected: false },
+          { isMarked: false, isSelected: false }
         ],
         [
-          { isMarked: false },
-          { isMarked: false },
-          { isMarked: false },
-          { isMarked: false },
-          { isMarked: false }
+          { isMarked: false, isSelected: false },
+          { isMarked: false, isSelected: false },
+          { isMarked: false, isSelected: false },
+          { isMarked: false, isSelected: false },
+          { isMarked: false, isSelected: false }
         ],
         [
-          { isMarked: false },
-          { isMarked: false },
-          { isMarked: false },
-          { isMarked: false },
-          { isMarked: false },
-          { isMarked: false },
-          { isMarked: false }
+          { isMarked: false, isSelected: false },
+          { isMarked: false, isSelected: false },
+          { isMarked: false, isSelected: false },
+          { isMarked: false, isSelected: false },
+          { isMarked: false, isSelected: false},
+          { isMarked: false, isSelected: false },
+          { isMarked: false, isSelected: false }
         ]
       ]
     };

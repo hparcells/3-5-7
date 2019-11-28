@@ -40,9 +40,6 @@ function App(
     function handlePlayerCountChange(count: number) {
       updatePlayerCount(count);
     }
-    function handleOpponentDisconnect() {
-      socket.emit('leaveRoom');
-    }
     function handleCleanUpClientMenu() {
       cleanUpMenu();
     }
@@ -56,14 +53,13 @@ function App(
     }
 
     socket.on('playerCount', handlePlayerCountChange);
-    socket.on('opponentDisconnect', handleOpponentDisconnect);
     socket.on('cleanUpClientMenu', handleCleanUpClientMenu);
     socket.on('updatedRoomData', handleUpdatedRoomData);
 
     return () => {
       socket.removeListener('playerCount', handlePlayerCountChange);
-      socket.removeListener('opponentDisconnect', handleOpponentDisconnect);
       socket.removeListener('cleanUpClientMenu', handleCleanUpClientMenu);
+      socket.removeListener('updatedRoomData', handleUpdatedRoomData);
     };
   }, []);
 
