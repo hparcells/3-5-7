@@ -28,6 +28,9 @@ export function menuUpdatedGameData(): MenuActionObject {
 export function cleanUpMenu(): MenuActionObject {
   return { type: 'CLEAN_UP_MENU' };
 }
+export function transitionToGame(): MenuActionObject {
+  return { type: 'TRANSITION_TO_GAME' };
+}
 
 export function changeScene(scene: Scene): GameActionObject {
   return { type: 'CHANGE_SCENE', scene };
@@ -37,4 +40,7 @@ export function setInitialRoomData(gameData: Game): GameActionObject {
 }
 export function leaveRoom(): GameActionObject {
   return { type: 'LEAVE_ROOM' };
+}
+export function setRoomData(gameData: Game): GameActionObject {
+  return { type: 'SET_ROOM_DATA', gameData };
 }

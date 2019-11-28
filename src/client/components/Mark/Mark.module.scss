@@ -1,0 +1,20 @@
+.root {
+  width: 40px;
+  height: 150px;
+
+  background: #FFFFFF;
+  opacity: 0.3;
+  border-radius: 3px;
+
+  transition: all 0.3s;
+
+  margin: 10px 8px;
+}
+.marked {
+  opacity: 0.95;
+}
+.selected {
+  @extend .marked;
+
+  transform: scale(0.9);
+}

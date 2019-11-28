@@ -47,5 +47,17 @@ export default function(state: GameState = initialState, action: GameActionObjec
     return newState;
   }
 
+  if(action.type === 'SET_ROOM_DATA') {
+    const newState = { ...state };
+
+    // Set the data.
+    newState.gameData = action.gameData;
+
+    // Set some values if we haven't already.
+    newState.scene = 'GAME';
+
+    return newState;
+  }
+
   return state;
 }

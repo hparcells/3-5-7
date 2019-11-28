@@ -134,6 +134,15 @@ function menuReducer(state: MenuState = initialState, action: MenuActionObject) 
 
     return newState;
   }
+  if(action.type === 'TRANSITION_TO_GAME') {
+    const newState = { ...state };
+
+    // Set some values.
+    newState.isProcessing = false;
+    newState.isWaitingForOpponent = false;
+
+    return newState;
+  }
 
   return state;
 }

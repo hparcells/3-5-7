@@ -3,31 +3,37 @@ import { connect } from 'react-redux';
 
 import socket from '../socket';
 
-import { updatePlayerCount, cleanUpMenu } from '../actions';
+import { updatePlayerCount, cleanUpMenu, setRoomData, transitionToGame } from '../actions';
 import { Store } from '../store';
 import { Scene } from '../reducers/game-reducer';
 
 import Welcome from './scenes/Welcome/Welcome';
 import Multiplayer from './scenes/Multiplayer/Multiplayer';
+import GameScene from './scenes/Game/Game';
 
 import './App.component.scss';
+import { Game } from '../../shared/types';
 
 const scenes: { [K in Scene]: JSX.Element } = {
   WELCOME: <Welcome />,
   MULTIPLAYER: <Multiplayer />,
-  GAME: null as any
+  GAME: <GameScene />
 };
 
 function App(
   {
     scene,
     updatePlayerCount,
-    cleanUpMenu
+    cleanUpMenu,
+    setRoomData,
+    transitionToGame
   }:
   {
     scene: Scene,
     updatePlayerCount: (count: number) => void,
-    cleanUpMenu: () => void
+    cleanUpMenu: () => void,
+    setRoomData: (gameData: Game) => void,
+    transitionToGame: () => void
   }
 ) {
   useEffect(() => {
@@ -40,10 +46,19 @@ function App(
     function handleCleanUpClientMenu() {
       cleanUpMenu();
     }
+    function handleUpdatedRoomData(roomData: Game) {
+      setRoomData(roomData);
+
+      // Transition if we are on the menu.
+      if(scene === 'MULTIPLAYER') {
+        transitionToGame();
+      }
+    }
 
     socket.on('playerCount', handlePlayerCountChange);
     socket.on('opponentDisconnect', handleOpponentDisconnect);
     socket.on('cleanUpClientMenu', handleCleanUpClientMenu);
+    socket.on('updatedRoomData', handleUpdatedRoomData);
 
     return () => {
       socket.removeListener('playerCount', handlePlayerCountChange);
@@ -60,7 +75,9 @@ const mapStateToProps = (state: Store) => ({
 });
 const mapDispatchToProps = {
   updatePlayerCount,
-  cleanUpMenu
+  cleanUpMenu,
+  setRoomData,
+  transitionToGame
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

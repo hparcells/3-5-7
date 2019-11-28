@@ -137,12 +137,22 @@ export default function(socket: GameSocket) {
       return;
     }
 
+    // Check if the username is the same as somebody in the room.
+    if(rooms[roomCode].players.includes(username)) {
+      socket.emit('loginError', 'The player in this room has the same username as you. Change your username.');
+
+      return;
+    }
+
     // Add the player to the object.
     rooms[roomCode].players.push(username);
 
     // Set some Socket data.
     socket.username = username;
     socket.roomCode = roomCode;
+
+    // Join the Socket.IO room.
+    socket.join(socket.roomCode);
 
     // Send ready room data to players.
     io.sockets.to(socket.roomCode).emit('updatedRoomData', rooms[roomCode]);
