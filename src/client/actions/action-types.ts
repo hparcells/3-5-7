@@ -20,6 +20,7 @@ export type GameActionObject
   | { type: 'SET_INTIAL_ROOM_DATA', gameData: Game }
   | { type: 'LEAVE_ROOM' }
   | { type: 'SET_ROOM_DATA', gameData: Game }
-  | { type: 'PREPARE_LOCAL_GAME' };
+  | { type: 'PREPARE_LOCAL_GAME' }
+  | { type: 'CLICK_MARK', row: number, index: number };
 
 export type ActionObject = MenuActionObject | GameActionObject;

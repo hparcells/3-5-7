@@ -5,7 +5,7 @@ import socket from '../../../socket';
 
 import { Mark } from '../../../../shared/types';
 import { Store } from '../../../store';
-import { changeScene } from '../../../actions';
+import { changeScene, clickMark } from '../../../actions';
 
 import MarkComponent from '../../Mark/Mark';
 
@@ -17,12 +17,14 @@ function Game(
   {
     marks,
     currentTurnName,
-    changeScene
+    changeScene,
+    clickMark
   }:
   {
     marks: Mark[][],
     currentTurnName: string,
-    changeScene: (scene: Scene) => void
+    changeScene: (scene: Scene) => void,
+    clickMark: (row: number, index: number) => void
   }
 ) {
   useEffect(() => {
@@ -42,55 +44,35 @@ function Game(
   }, []);
 
   function handleMarkClick(row: number, index: number) {
-    console.log(`Clicked at Row: ${row}, Index: ${index}`);
+    clickMark(row, index);
   }
 
   return (
     <div className={classes.root}>
       <div style={{ margin: 'auto' }}>
         <p className={classes.turnLabel}>{currentTurnName}'s Turn</p>
-        <div className={classes.markWrapper}>
-          {
-            marks[0].map((mark, index) => {
-              return <MarkComponent
-                key={index}
-                marked={mark.isMarked}
-                selected={mark.isSelected}
-                onClick={handleMarkClick}
-                row={0}
-                index={index}
-              />;
-            })
-          }
-        </div>
-        <div className={classes.markWrapper}>
-          {
-            marks[1].map((mark, index) => {
-              return <MarkComponent
-                key={index}
-                marked={mark.isMarked}
-                selected={mark.isSelected}
-                onClick={handleMarkClick}
-                row={1}
-                index={index}
-              />;
-            })
-          }
-        </div>
-        <div className={classes.markWrapper}>
-          {
-            marks[2].map((mark, index) => {
-              return <MarkComponent
-                key={index}
-                marked={mark.isMarked}
-                selected={mark.isSelected}
-                onClick={handleMarkClick}
-                row={3}
-                index={index}
-              />;
-            })
-          }
-        </div>
+        {
+          marks.map((markRow, rowIndex) => {
+            return (
+              <div className={classes.markWrapper} key={rowIndex}>
+                {
+                  markRow.map((mark, markIndex) => {
+                    return (
+                      <MarkComponent
+                        key={markIndex}
+                        marked={mark.isMarked}
+                        selected={mark.isSelected}
+                        onClick={handleMarkClick}
+                        row={rowIndex}
+                        index={markIndex}
+                      />
+                    );
+                  })
+                }
+              </div>
+            );
+          })
+        }
       </div>
     </div>
   );
@@ -101,7 +83,8 @@ const mapStateToProps = (state: Store) => ({
   currentTurnName: state.game.gameData.players[state.game.gameData.turn]
 });
 const mapDispatchToProps = {
-  changeScene
+  changeScene,
+  clickMark
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);

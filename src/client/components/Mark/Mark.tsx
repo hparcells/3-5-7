@@ -20,18 +20,15 @@ function Mark(
   }
 ) {
   function handleOnClick() {
-    // Check if we can even.
-    if(!marked && !selected) {
-      onClick(row, index);
-    }
+    onClick(row, index);
   }
 
   return (
     <div
       className={clsx(
         classes.root,
-        marked ? classes.marked : null,
-        selected ? classes.selected : null
+        marked && classes.marked,
+        selected && classes.selected
       )}
       onClick={handleOnClick}
     />

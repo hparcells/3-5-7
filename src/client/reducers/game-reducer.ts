@@ -1,3 +1,5 @@
+import { error } from 'log-type';
+
 import { GameActionObject } from '../actions';
 
 import socket from '../socket';
@@ -91,6 +93,27 @@ export default function(state: GameState = initialState, action: GameActionObjec
         ]
       ]
     };
+
+    return newState;
+  }
+  if(action.type === 'CLICK_MARK') {
+    const newState = { ...state };
+
+    // If we are in an online game.
+    if(newState.gameData.roomCode !== 'LOCAL') {
+      return newState;
+    }
+
+    // If we already marked this mark during this turn.
+    if(newState.gameData.marks[action.row][action.index].isSelected) {
+      return newState;
+    }
+    if(newState.gameData.marks[action.row][action.index].isMarked) {
+      error('Cannot mark an already marked mark.');
+      return newState;
+    }
+
+    newState.gameData.marks[action.row][action.index].isSelected = true;
 
     return newState;
   }

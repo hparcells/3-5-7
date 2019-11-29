@@ -88,3 +88,6 @@ export function setRoomData(gameData: Game): GameActionObject {
 export function prepareLocalGame(): GameActionObject {
   return { type: 'PREPARE_LOCAL_GAME' };
 }
+export function clickMark(row: number, index: number): GameActionObject {
+  return { type: 'CLICK_MARK', row, index };
+}
