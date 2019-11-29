@@ -3,3 +3,17 @@
   display: flex;
   flex-flow: column;
 }
+.markWrapper {
+  display: flex;
+  justify-content: center;
+}
+.turnLabel {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 35px;
+  line-height: 41px;
+  text-align: center;
+  
+  color: #FFFFFF; 
+}

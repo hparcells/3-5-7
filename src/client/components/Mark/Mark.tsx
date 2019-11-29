@@ -7,18 +7,22 @@ function Mark(
   {
     marked,
     selected,
-    onClick
+    onClick,
+    row,
+    index
   }:
   {
     marked: boolean,
     selected: boolean,
-    onClick: () => any
+    onClick: (row: number, index: number) => any,
+    row: number,
+    index: number
   }
 ) {
   function handleOnClick() {
     // Check if we can even.
     if(!marked && !selected) {
-      onClick();
+      onClick(row, index);
     }
   }
 

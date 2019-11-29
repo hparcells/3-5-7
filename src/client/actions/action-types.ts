@@ -2,6 +2,7 @@ import { Scene } from '../reducers/game-reducer';
 import { GameCreationType } from '../reducers/menu-reducer';
 import { Game } from '../../shared/types';
 
+/** Contains actions for the menu reducer. */
 export type MenuActionObject
   = { type: 'UPDATE_PLAYER_COUNT', count: number }
   | { type: 'CHANGE_GAME_CREATION_TYPE', gameCreationType: GameCreationType }
@@ -13,6 +14,7 @@ export type MenuActionObject
   | { type: 'CLEAN_UP_MENU' }
   | { type: 'TRANSITION_TO_GAME' };
 
+/** Contains actions for the game reducer. */
 export type GameActionObject
   = { type: 'CHANGE_SCENE', scene: Scene }
   | { type: 'SET_INTIAL_ROOM_DATA', gameData: Game }

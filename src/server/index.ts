@@ -8,8 +8,11 @@ import setupRoom from './handlers/room';
 
 export const rooms: { [type: string]: Game } = {};
 
+/** An extended version of Socket.IO's Socket with username and room code keys. */
 export interface GameSocket extends Socket {
+  /** The username of the player on this socket. */
   username: string;
+  /** The room that the player is connected to. */
   roomCode: string;
 }
 

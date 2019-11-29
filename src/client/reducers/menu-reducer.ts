@@ -6,13 +6,21 @@ import socket from '../socket';
 
 export type GameCreationType = 'HOST_GAME' | 'JOIN_GAME';
 
+/** The state of the menu. */
 export interface MenuState {
+  /** How many players are online right now. */
   online: number;
+  /** The username of the player. */
   username: string;
+  /** The room code that they want to connect to. */
   roomCode: string;
+  /** Whether the player wants to Host a game or Join a game. */
   gameCreationType: GameCreationType;
+  /** Whether or not the player is waiting for a player to join their room. */
   isWaitingForOpponent: boolean;
+  /** The error that is present with joining or creating a room. */
   onlineError: string;
+  /** Is there something that is happening on the server side? */
   isProcessing: boolean;
 }
 

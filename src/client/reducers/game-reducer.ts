@@ -6,8 +6,11 @@ import { Game } from '../../shared/types';
 
 export type Scene = 'WELCOME' | 'MULTIPLAYER' | 'GAME';
 
+/** The state of the game. */
 export interface GameState {
+  /** The scene that is being displayed. */
   scene: Scene;
+  /** The game data. */
   gameData: Game;
 }
 
