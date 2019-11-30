@@ -2,7 +2,7 @@ import { MenuActionObject, GameActionObject } from './action-types';
 
 import { Scene } from '../reducers/game-reducer';
 import { GameCreationType } from '../reducers/menu-reducer';
-import { Game } from '../../shared/types';
+import { Game, RowIndex, MarkRowIndex } from '../../shared/types';
 
 /**
  * Sets the new player count.
@@ -88,6 +88,6 @@ export function setRoomData(gameData: Game): GameActionObject {
 export function prepareLocalGame(): GameActionObject {
   return { type: 'PREPARE_LOCAL_GAME' };
 }
-export function clickMark(row: number, index: number): GameActionObject {
+export function clickMark(row: RowIndex, index: MarkRowIndex): GameActionObject {
   return { type: 'CLICK_MARK', row, index };
 }

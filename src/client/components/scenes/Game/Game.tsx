@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import socket from '../../../socket';
 
-import { Mark } from '../../../../shared/types';
+import { Mark, MarkArray, MarkRowIndex, RowIndex } from '../../../../shared/types';
 import { Store } from '../../../store';
 import { changeScene, clickMark } from '../../../actions';
 
@@ -21,10 +21,10 @@ function Game(
     clickMark
   }:
   {
-    marks: Mark[][],
+    marks: MarkArray,
     currentTurnName: string,
     changeScene: (scene: Scene) => void,
-    clickMark: (row: number, index: number) => void
+    clickMark: (row: RowIndex, index: MarkRowIndex) => void
   }
 ) {
   useEffect(() => {
@@ -43,7 +43,7 @@ function Game(
     };
   }, []);
 
-  function handleMarkClick(row: number, index: number) {
+  function handleMarkClick(row: RowIndex, index: MarkRowIndex) {
     clickMark(row, index);
   }
 
@@ -52,19 +52,19 @@ function Game(
       <div style={{ margin: 'auto' }}>
         <p className={classes.turnLabel}>{currentTurnName}'s Turn</p>
         {
-          marks.map((markRow, rowIndex) => {
+          marks.map((markRow: Mark[], rowIndex: number) => {
             return (
               <div className={classes.markWrapper} key={rowIndex}>
                 {
-                  markRow.map((mark, markIndex) => {
+                  markRow.map((mark: Mark, markIndex: number) => {
                     return (
                       <MarkComponent
                         key={markIndex}
                         marked={mark.isMarked}
                         selected={mark.isSelected}
                         onClick={handleMarkClick}
-                        row={rowIndex}
-                        index={markIndex}
+                        row={rowIndex as RowIndex}
+                        index={markIndex as MarkRowIndex}
                       />
                     );
                   })

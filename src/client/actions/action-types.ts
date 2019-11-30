@@ -1,6 +1,6 @@
 import { Scene } from '../reducers/game-reducer';
 import { GameCreationType } from '../reducers/menu-reducer';
-import { Game } from '../../shared/types';
+import { Game, RowIndex, MarkRowIndex } from '../../shared/types';
 
 /** Contains actions for the menu reducer. */
 export type MenuActionObject
@@ -21,6 +21,6 @@ export type GameActionObject
   | { type: 'LEAVE_ROOM' }
   | { type: 'SET_ROOM_DATA', gameData: Game }
   | { type: 'PREPARE_LOCAL_GAME' }
-  | { type: 'CLICK_MARK', row: number, index: number };
+  | { type: 'CLICK_MARK', row: RowIndex, index: MarkRowIndex };
 
 export type ActionObject = MenuActionObject | GameActionObject;

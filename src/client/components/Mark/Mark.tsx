@@ -2,6 +2,7 @@ import React from 'react';
 
 import classes from './Mark.module.scss';
 import clsx from 'clsx';
+import { RowIndex, MarkRowIndex } from '../../../shared/types';
 
 function Mark(
   {
@@ -14,9 +15,9 @@ function Mark(
   {
     marked: boolean,
     selected: boolean,
-    onClick: (row: number, index: number) => any,
-    row: number,
-    index: number
+    onClick: (row: RowIndex, index: MarkRowIndex) => any,
+    row: RowIndex,
+    index: MarkRowIndex
   }
 ) {
   function handleOnClick() {
@@ -27,8 +28,8 @@ function Mark(
     <div
       className={clsx(
         classes.root,
-        marked && classes.marked,
-        selected && classes.selected
+        marked ? classes.marked : null,
+        selected ? classes.selected : null
       )}
       onClick={handleOnClick}
     />

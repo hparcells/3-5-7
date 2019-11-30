@@ -4,7 +4,7 @@ import { GameActionObject } from '../actions';
 
 import socket from '../socket';
 
-import { Game } from '../../shared/types';
+import { Game, MarkArray } from '../../shared/types';
 
 export type Scene = 'WELCOME' | 'MULTIPLAYER' | 'GAME';
 
@@ -91,7 +91,8 @@ export default function(state: GameState = initialState, action: GameActionObjec
           { isMarked: false, isSelected: false },
           { isMarked: false, isSelected: false }
         ]
-      ]
+      ],
+      activeRow: null as any
     };
 
     return newState;
@@ -101,6 +102,7 @@ export default function(state: GameState = initialState, action: GameActionObjec
 
     // If we are in an online game.
     if(newState.gameData.roomCode !== 'LOCAL') {
+      // TODO:
       return newState;
     }
 
@@ -108,12 +110,24 @@ export default function(state: GameState = initialState, action: GameActionObjec
     if(newState.gameData.marks[action.row][action.index].isSelected) {
       return newState;
     }
+    // If this mark is already marked in this game.
     if(newState.gameData.marks[action.row][action.index].isMarked) {
-      error('Cannot mark an already marked mark.');
       return newState;
     }
 
-    newState.gameData.marks[action.row][action.index].isSelected = true;
+    // Check if we have marked a mark this turn.
+    if(newState.gameData.activeRow === null) {
+      newState.gameData.activeRow = action.row;
+    }else {
+      if(newState.gameData.activeRow !== action.row) {
+        return newState;
+      }
+    }
+
+    const newMarks = [ ...newState.gameData.marks ] as MarkArray;
+
+    newMarks[action.row][action.index].isSelected = true;
+    newState.gameData.marks = newMarks;
 
     return newState;
   }

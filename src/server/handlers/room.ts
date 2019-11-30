@@ -97,7 +97,8 @@ export default function(socket: GameSocket) {
           { isMarked: false, isSelected: false },
           { isMarked: false, isSelected: false }
         ]
-      ]
+      ],
+      activeRow: null as any
     };
 
     // Set some socket data.
