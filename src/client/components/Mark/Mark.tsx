@@ -1,8 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import clsx from 'clsx';
+
+import { Store } from '../../store';
+
+import { RowIndex, MarkRowIndex } from '../../../shared/types';
 
 import classes from './Mark.module.scss';
-import clsx from 'clsx';
-import { RowIndex, MarkRowIndex } from '../../../shared/types';
 
 function Mark(
   {
@@ -11,7 +15,8 @@ function Mark(
     onClick,
     row,
     index,
-    selectable
+    selectable,
+    activeRow
   }:
   {
     marked: boolean,
@@ -19,7 +24,8 @@ function Mark(
     onClick: (row: RowIndex, index: MarkRowIndex) => any,
     row: RowIndex,
     index: MarkRowIndex,
-    selectable: boolean
+    selectable: boolean,
+    activeRow: RowIndex
   }
 ) {
   function handleOnClick() {
@@ -32,11 +38,16 @@ function Mark(
         classes.root,
         marked ? classes.marked : null,
         selected ? classes.selected : null,
-        selectable ? null : classes.unselectable
+        selectable ? null : classes.unselectable,
+        activeRow === row && marked ? classes.unselectable : null
       )}
       onClick={handleOnClick}
     />
   );
 }
 
-export default Mark;
+const mapStateToProps = (state: Store) => ({
+  activeRow: state.game.gameData.activeRow
+});
+
+export default connect(mapStateToProps, {})(Mark);

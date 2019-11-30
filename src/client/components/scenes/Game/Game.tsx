@@ -5,7 +5,7 @@ import socket from '../../../socket';
 
 import { Mark, MarkArray, MarkRowIndex, RowIndex } from '../../../../shared/types';
 import { Store } from '../../../store';
-import { changeScene, clickMark } from '../../../actions';
+import { changeScene, clickMark, endTurn } from '../../../actions';
 
 import MarkComponent from '../../Mark/Mark';
 
@@ -20,14 +20,16 @@ function Game(
     currentTurnName,
     activeRow,
     changeScene,
-    clickMark
+    clickMark,
+    endTurn
   }:
   {
     marks: MarkArray,
     currentTurnName: string,
     activeRow: RowIndex,
     changeScene: (scene: Scene) => void,
-    clickMark: (row: RowIndex, index: MarkRowIndex) => void
+    clickMark: (row: RowIndex, index: MarkRowIndex) => void,
+    endTurn: () => void
   }
 ) {
   useEffect(() => {
@@ -48,6 +50,9 @@ function Game(
 
   function handleMarkClick(row: RowIndex, index: MarkRowIndex) {
     clickMark(row, index);
+  }
+  function handleEndTurn() {
+    endTurn();
   }
 
   return (
@@ -77,7 +82,13 @@ function Game(
             );
           })
         }
-        <Button style={{ marginTop: '10px' }}>End Turn</Button>
+        <Button
+          style={{ marginTop: '10px' }}
+          disabled={activeRow === null}
+          onClick={handleEndTurn}
+        >
+          End Turn
+        </Button>
       </div>
     </div>
   );
@@ -90,7 +101,8 @@ const mapStateToProps = (state: Store) => ({
 });
 const mapDispatchToProps = {
   changeScene,
-  clickMark
+  clickMark,
+  endTurn
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);

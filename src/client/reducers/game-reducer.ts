@@ -1,3 +1,5 @@
+import { error } from 'log-type';
+
 import { GameActionObject } from '../actions';
 
 import socket from '../socket';
@@ -126,6 +128,43 @@ export default function(state: GameState = initialState, action: GameActionObjec
 
     newMarks[action.row][action.index].isSelected = true;
     newState.gameData.marks = newMarks;
+
+    // TODO: Check win.
+
+    return newState;
+  }
+  if(action.type === 'END_TURN') {
+    const newState = { ...state };
+
+    // Check if we can even.
+    if(!newState.gameData.marks.flat().map((mark) => {
+      return mark.isSelected;
+    }).includes(true)) {
+      error('Cannot end a turn if nothing was marked.');
+      return newState;
+    }
+
+    // Change our marks to marked marks.
+    const newMarks = [ ...newState.gameData.marks ] as MarkArray;
+    newMarks.forEach((markRow) => {
+      markRow.forEach((mark) => {
+        if(mark.isSelected) {
+          mark.isSelected = false;
+          mark.isMarked = true;
+        }
+      });
+    });
+    newState.gameData.marks = newMarks;
+
+    // Change the turn;
+    if(newState.gameData.turn === 0) {
+      newState.gameData.turn++;
+    }else {
+      newState.gameData.turn--;
+    }
+
+    // Reset some values.
+    newState.gameData.activeRow = null as any;
 
     return newState;
   }

@@ -88,6 +88,15 @@ export function setRoomData(gameData: Game): GameActionObject {
 export function prepareLocalGame(): GameActionObject {
   return { type: 'PREPARE_LOCAL_GAME' };
 }
+/**
+ * Handles logic for clicking marks.
+ * @param row The row that the mark is in.
+ * @param index The index of the mark in the row.
+ */
 export function clickMark(row: RowIndex, index: MarkRowIndex): GameActionObject {
   return { type: 'CLICK_MARK', row, index };
+}
+/** Ends your turn. */
+export function endTurn(): GameActionObject {
+  return { type: 'END_TURN' };
 }

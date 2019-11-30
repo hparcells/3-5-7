@@ -6,7 +6,7 @@
   max-height: 150px;
 
   background: #FFFFFF;
-  opacity: 0.3;
+  opacity: 0.25;
   border-radius: 3px;
 
   transition: all 280ms cubic-bezier(.4, 0, .2, 1);
@@ -27,4 +27,7 @@
 }
 .unselectable {
   opacity: 0.1;
+}
+.unselectable.marked {
+  opacity: 0.7;
 }

@@ -21,6 +21,7 @@ export type GameActionObject
   | { type: 'LEAVE_ROOM' }
   | { type: 'SET_ROOM_DATA', gameData: Game }
   | { type: 'PREPARE_LOCAL_GAME' }
-  | { type: 'CLICK_MARK', row: RowIndex, index: MarkRowIndex };
+  | { type: 'CLICK_MARK', row: RowIndex, index: MarkRowIndex }
+  | { type: 'END_TURN' };
 
 export type ActionObject = MenuActionObject | GameActionObject;
