@@ -4,6 +4,7 @@ interface CssExports {
   'marked': string;
   'root': string;
   'selected': string;
+  'unselectable': string;
 }
 declare var cssExports: CssExports;
 export = cssExports;

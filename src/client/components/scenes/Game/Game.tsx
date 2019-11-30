@@ -12,17 +12,20 @@ import MarkComponent from '../../Mark/Mark';
 import { Scene } from '../../../reducers/game-reducer';
 
 import classes from './Game.module.scss';
+import Button from '../../Button/Button';
 
 function Game(
   {
     marks,
     currentTurnName,
+    activeRow,
     changeScene,
     clickMark
   }:
   {
     marks: MarkArray,
     currentTurnName: string,
+    activeRow: RowIndex,
     changeScene: (scene: Scene) => void,
     clickMark: (row: RowIndex, index: MarkRowIndex) => void
   }
@@ -65,6 +68,7 @@ function Game(
                         onClick={handleMarkClick}
                         row={rowIndex as RowIndex}
                         index={markIndex as MarkRowIndex}
+                        selectable={activeRow === null || activeRow === rowIndex}
                       />
                     );
                   })
@@ -73,6 +77,7 @@ function Game(
             );
           })
         }
+        <Button style={{ marginTop: '10px' }}>End Turn</Button>
       </div>
     </div>
   );
@@ -80,7 +85,8 @@ function Game(
 
 const mapStateToProps = (state: Store) => ({
   marks: state.game.gameData.marks,
-  currentTurnName: state.game.gameData.players[state.game.gameData.turn]
+  currentTurnName: state.game.gameData.players[state.game.gameData.turn],
+  activeRow: state.game.gameData.activeRow
 });
 const mapDispatchToProps = {
   changeScene,

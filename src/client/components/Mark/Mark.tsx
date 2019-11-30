@@ -10,14 +10,16 @@ function Mark(
     selected,
     onClick,
     row,
-    index
+    index,
+    selectable
   }:
   {
     marked: boolean,
     selected: boolean,
     onClick: (row: RowIndex, index: MarkRowIndex) => any,
     row: RowIndex,
-    index: MarkRowIndex
+    index: MarkRowIndex,
+    selectable: boolean
   }
 ) {
   function handleOnClick() {
@@ -29,7 +31,8 @@ function Mark(
       className={clsx(
         classes.root,
         marked ? classes.marked : null,
-        selected ? classes.selected : null
+        selected ? classes.selected : null,
+        selectable ? null : classes.unselectable
       )}
       onClick={handleOnClick}
     />

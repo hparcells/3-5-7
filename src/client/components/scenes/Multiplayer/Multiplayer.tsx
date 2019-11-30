@@ -44,7 +44,7 @@ function Multiplayer(
 
   return (
     <div className={classes.root}>
-      <Title style={{ marginBottom: '0px' }} />
+      <Title style={{ marginTop: '10px', marginBottom: '-90px' }} />
 
       <div className={classes.restOfPage}>
         <div className={classes.multiplayerBox}>

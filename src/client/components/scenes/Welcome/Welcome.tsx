@@ -32,7 +32,7 @@ function Welcome(
 
   return (
     <div className={classes.root}>
-      <Title />
+      <Title style={{ marginTop: '10px' }} />
 
       <p className={classes.online}>Players Online: {online || 'Fetching...'}</p>
 

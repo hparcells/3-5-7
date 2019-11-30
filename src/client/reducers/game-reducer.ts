@@ -1,5 +1,3 @@
-import { error } from 'log-type';
-
 import { GameActionObject } from '../actions';
 
 import socket from '../socket';
