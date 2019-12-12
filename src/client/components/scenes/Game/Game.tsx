@@ -13,6 +13,7 @@ import { Scene } from '../../../reducers/game-reducer';
 
 import classes from './Game.module.scss';
 import Button from '../../Button/Button';
+import WinningOverlay from '../../WInningOverlay/WinningOverlay';
 
 function Game(
   {
@@ -57,6 +58,8 @@ function Game(
 
   return (
     <div className={classes.root}>
+      <WinningOverlay />
+
       <div style={{ margin: 'auto' }}>
         <p className={classes.turnLabel}>{currentTurnName}'s Turn</p>
         {

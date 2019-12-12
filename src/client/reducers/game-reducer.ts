@@ -22,6 +22,14 @@ const initialState: GameState = {
 };
 
 export default function(state: GameState = initialState, action: GameActionObject) {
+  /**
+   * Gets the username of a player in the `players` array by their index.
+   * @param index The index of the player in the player array.
+   */
+  function getPlayerByIndex(index: number) {
+    return state.gameData.players[index];
+  }
+
   if(action.type === 'CHANGE_SCENE') {
     const newState = { ...state };
 
@@ -92,7 +100,8 @@ export default function(state: GameState = initialState, action: GameActionObjec
           { isMarked: false, isSelected: false }
         ]
       ],
-      activeRow: null as any
+      activeRow: null as any,
+      winner: null as any
     };
 
     return newState;
@@ -129,8 +138,6 @@ export default function(state: GameState = initialState, action: GameActionObjec
     newMarks[action.row][action.index].isSelected = true;
     newState.gameData.marks = newMarks;
 
-    // TODO: Check win.
-
     return newState;
   }
   if(action.type === 'END_TURN') {
@@ -156,11 +163,16 @@ export default function(state: GameState = initialState, action: GameActionObjec
     });
     newState.gameData.marks = newMarks;
 
-    // Change the turn;
-    if(newState.gameData.turn === 0) {
-      newState.gameData.turn++;
+    // If we won.
+    if(!newState.gameData.marks.flat().map((mark) => {
+      return mark.isMarked;
+    }).includes(false)) {
+      const winningPlayerIndex = 1 - newState.gameData.turn;
+
+      newState.gameData.winner = winningPlayerIndex;
     }else {
-      newState.gameData.turn--;
+      // Change the turn;
+      newState.gameData.turn = 1 - newState.gameData.turn;
     }
 
     // Reset some values.

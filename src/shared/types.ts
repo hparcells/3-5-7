@@ -29,4 +29,6 @@ export interface Game {
   marks: MarkArray;
   /** The row that the first selected mark was made in. */
   activeRow: RowIndex;
+  /** The index of the winner of the game. */
+  winner: number;
 }
