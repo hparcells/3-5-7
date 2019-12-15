@@ -180,6 +180,14 @@ export default function(state: GameState = initialState, action: GameActionObjec
 
     return newState;
   }
+  if(action.type === 'RESET_GAME') {
+    const newState = { ...state };
+
+    newState.gameData = null as any;
+    newState.scene = 'WELCOME';
+
+    return newState;
+  }
 
   return state;
 }

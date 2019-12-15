@@ -100,3 +100,7 @@ export function clickMark(row: RowIndex, index: MarkRowIndex): GameActionObject 
 export function endTurn(): GameActionObject {
   return { type: 'END_TURN' };
 }
+/** Resets the game data and returns to the menu. */
+export function resetGame(): GameActionObject {
+  return { type: 'RESET_GAME' };
+}

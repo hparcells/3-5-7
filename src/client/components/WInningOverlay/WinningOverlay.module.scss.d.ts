@@ -3,6 +3,7 @@
 interface CssExports {
   'active': string;
   'root': string;
+  'winningText': string;
 }
 declare var cssExports: CssExports;
 export = cssExports;

@@ -22,6 +22,7 @@ export type GameActionObject
   | { type: 'SET_ROOM_DATA', gameData: Game }
   | { type: 'PREPARE_LOCAL_GAME' }
   | { type: 'CLICK_MARK', row: RowIndex, index: MarkRowIndex }
-  | { type: 'END_TURN' };
+  | { type: 'END_TURN' }
+  | { type: 'RESET_GAME' };
 
 export type ActionObject = MenuActionObject | GameActionObject;
