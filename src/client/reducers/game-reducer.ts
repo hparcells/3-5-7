@@ -111,7 +111,15 @@ export default function(state: GameState = initialState, action: GameActionObjec
 
     // If we are in an online game.
     if(newState.gameData.roomCode !== 'LOCAL') {
-      // TODO:
+      // TODO: Double check if we can even make our turn.
+
+      socket.emit(
+        'clickMark',
+        newState.gameData.turn,
+        action.row,
+        action.index
+      );
+
       return newState;
     }
 
@@ -142,6 +150,15 @@ export default function(state: GameState = initialState, action: GameActionObjec
   }
   if(action.type === 'END_TURN') {
     const newState = { ...state };
+
+    // If we are in an online game.
+    if(newState.gameData.roomCode !== 'LOCAL') {
+      // TODO: Double check if we can even make our turn.
+
+      socket.emit('endTurn', newState.gameData.turn);
+
+      return newState;
+    }
 
     // Check if we can even.
     if(!newState.gameData.marks.flat().map((mark) => {

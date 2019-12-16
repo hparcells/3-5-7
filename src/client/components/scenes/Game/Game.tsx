@@ -20,6 +20,8 @@ function Game(
     marks,
     currentTurnName,
     activeRow,
+    username,
+    roomCode,
     changeScene,
     clickMark,
     endTurn
@@ -28,6 +30,8 @@ function Game(
     marks: MarkArray,
     currentTurnName: string,
     activeRow: RowIndex,
+    username: string,
+    roomCode: string,
     changeScene: (scene: Scene) => void,
     clickMark: (row: RowIndex, index: MarkRowIndex) => void,
     endTurn: () => void
@@ -50,6 +54,11 @@ function Game(
   }, []);
 
   function handleMarkClick(row: RowIndex, index: MarkRowIndex) {
+    // Check if we can even make our turn.
+    if(roomCode !== 'LOCAL' && currentTurnName !== username) {
+      return;
+    }
+
     clickMark(row, index);
   }
   function handleEndTurn() {
@@ -87,7 +96,7 @@ function Game(
         }
         <Button
           style={{ marginTop: '10px' }}
-          disabled={activeRow === null}
+          disabled={activeRow === null || (roomCode !== 'LOCAL' && currentTurnName !== username)}
           onClick={handleEndTurn}
         >
           End Turn
@@ -100,7 +109,9 @@ function Game(
 const mapStateToProps = (state: Store) => ({
   marks: state.game.gameData.marks,
   currentTurnName: state.game.gameData.players[state.game.gameData.turn],
-  activeRow: state.game.gameData.activeRow
+  activeRow: state.game.gameData.activeRow,
+  username: state.menu.username,
+  roomCode: state.game.gameData.roomCode
 });
 const mapDispatchToProps = {
   changeScene,
