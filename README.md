@@ -13,3 +13,15 @@ Get your opponent to turn the last mark red.
 3. You may not turn marks back green.
 4. Your turn ends when you are done making marks red.
 5. You win the game when your opponent turns the last mark red.
+
+## Iterations of the Game
+Within the last year, this game as gone through three versions of the game.
+
+The first version of the game was really simple. It used JavaScript with no frameworks or UI libraries. One of my first projects I worked on when I wanted to learn JavaScript.
+
+About four months from then, I rewrote the entire project in an effort to learn React better. I used Material UI as my UI library and it didn't look that bad. It took about three days, but it looked better than the original.
+
+After another five months, I decided to rewrite the game without a UI library. This was the first project in my journey to learn to create and execute designs I made. For this project, Dave Caruso made me a design, and I executed it. In my opinion, I don't think it turned out that bad.
+
+## Credits
+- [Dave Caruso](https://davecode.me/): Helping make the design.
