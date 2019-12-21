@@ -8,7 +8,7 @@
     "dev": "fullstack-system dev",
     "build": "fullstack-system build",
     "clean": "fullstack-system clean",
-    "production": "fullstack-system production"
+    "production": "fullstack-system production -p $PORT"
   },
   "dependencies": {
     "@reverse/array": "^1.7.1",
