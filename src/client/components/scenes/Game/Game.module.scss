@@ -1,0 +1,21 @@
+.root {
+  height: 100vh;
+  display: flex;
+  flex-flow: column;
+}
+.markWrapper {
+  display: flex;
+  justify-content: center;
+}
+.turnLabel {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 35px;
+  text-align: center;
+
+  margin-top: -10vh;
+  margin-bottom: 5px;
+  
+  color: #FFFFFF;
+}

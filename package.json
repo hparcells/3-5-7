@@ -1,28 +1,36 @@
 {
   "name": "3-5-7",
-  "description": "A 15 line game turn based game about turning marks red.",
-  "private": true,
-  "version": "2.0.0",
+  "description": "A 15 line game turn based game about turning marks red, the person to turn the last mark red loses.",
+  "version": "3.0.0",
+  "author": "Hunter Parcells",
   "scripts": {
     "start": "fullstack-system dev",
     "dev": "fullstack-system dev",
     "build": "fullstack-system build",
     "clean": "fullstack-system clean",
-    "production": "fullstack-system production -p $PORT"
+    "production": "fullstack-system production"
   },
   "dependencies": {
-    "@material-ui/core": "^4.1.3",
-    "@material-ui/icons": "^4.2.1",
-    "@material-ui/styles": "^4.1.2",
-    "@reverse/array": "^1.3.0",
-    "fullstack-system": "^2.2.2",
+    "@reverse/array": "^1.7.1",
+    "clsx": "^1.0.4",
+    "fullstack-system": "^2.5.0",
+    "log-type": "^1.0.0",
     "logger3": "^1.0.0",
+    "node-sass": "^4.13.0",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-ga": "^2.7.0",
+    "react-redux": "^7.1.3",
+    "redux": "^4.0.4",
+    "sync-reducer": "^2.0.4"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.2",
-    "css-loader": "^3.0.0",
-    "style-loader": "^0.23.1"
+    "@types/react-redux": "^7.1.5",
+    "prettier": "^1.19.1",
+    "tslint": "^5.20.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-react": "^4.1.0",
+    "typescript": "^3.5.3",
+    "typescript-tslint-plugin": "^0.5.4"
   }
 }

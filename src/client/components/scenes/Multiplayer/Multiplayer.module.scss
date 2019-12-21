@@ -1,0 +1,19 @@
+.root {
+  height: 100vh;
+  display: flex;
+  flex-flow: column;
+}
+.restOfPage {
+  display: flex;
+  flex-grow: 1;
+}
+.multiplayerBox {
+  width: 335px;
+  
+  margin: auto;
+  
+  background-color: #7A94D8;
+
+  display: flex;
+  flex-flow: column;
+}
