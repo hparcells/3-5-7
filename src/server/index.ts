@@ -5,6 +5,7 @@ import { Game } from '../shared/types';
 
 import setupLogin from './handlers/login';
 import setupRoom from './handlers/room';
+import setupGame from './handlers/game';
 
 export const rooms: { [type: string]: Game } = {};
 
@@ -20,4 +21,5 @@ io.on('connection', (socket: GameSocket) => {
   // Add out handlers.
   setupLogin(socket);
   setupRoom(socket);
+  setupGame(socket);
 });

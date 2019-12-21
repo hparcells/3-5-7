@@ -23,6 +23,7 @@ export type GameActionObject
   | { type: 'PREPARE_LOCAL_GAME' }
   | { type: 'CLICK_MARK', row: RowIndex, index: MarkRowIndex }
   | { type: 'END_TURN' }
-  | { type: 'RESET_GAME' };
+  | { type: 'RESET_GAME' }
+  | { type: 'HANDLE_MULTIPLAYER_REMATCH' };
 
 export type ActionObject = MenuActionObject | GameActionObject;

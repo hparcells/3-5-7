@@ -80,6 +80,9 @@ function Hub(
   function handleGoClick() {
     joinGame(gameCreationType);
   }
+  function scrollToTop() {
+    window.scrollTo(0, 0);
+  }
 
   return (
     <div>
@@ -105,10 +108,22 @@ function Hub(
         </Button>
       </div>
       <div className={classes.restOfBox}>
-        <TextField onChange={handleUsernameChange} value={username}>Username</TextField>
+        <TextField
+          onChange={handleUsernameChange}
+          value={username}
+          onBlur={scrollToTop}
+        >
+          Username
+        </TextField>
         {
           gameCreationType === 'JOIN_GAME'
-            ? <TextField onChange={handleRoomCodeChange} value={roomCode || ''}>Room Code</TextField>
+            ? <TextField
+                onChange={handleRoomCodeChange}
+                value={roomCode || ''}
+                onBlur={scrollToTop}
+              >
+                Room Code
+              </TextField>
             : null
         }
         <p

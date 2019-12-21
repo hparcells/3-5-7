@@ -104,3 +104,7 @@ export function endTurn(): GameActionObject {
 export function resetGame(): GameActionObject {
   return { type: 'RESET_GAME' };
 }
+/** Handles the logic for requesting a rematch. */
+export function handleMultiplayerRematch(): GameActionObject {
+  return { type: 'HANDLE_MULTIPLAYER_REMATCH' };
+}

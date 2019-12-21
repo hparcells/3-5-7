@@ -1,6 +1,6 @@
 import { error } from 'log-type';
 
-import { GameActionObject } from '../actions';
+import { GameActionObject, prepareLocalGame } from '../actions';
 
 import socket from '../socket';
 
@@ -101,7 +101,8 @@ export default function(state: GameState = initialState, action: GameActionObjec
         ]
       ],
       activeRow: null as any,
-      winner: null as any
+      winner: null as any,
+      rematchVotes: []
     };
 
     return newState;
@@ -153,7 +154,7 @@ export default function(state: GameState = initialState, action: GameActionObjec
 
     // If we are in an online game.
     if(newState.gameData.roomCode !== 'LOCAL') {
-      // TODO: Double check if we can even make our turn.
+      // TODO: Double check if we can even end our turn.
 
       socket.emit('endTurn', newState.gameData.turn);
 
@@ -200,8 +201,20 @@ export default function(state: GameState = initialState, action: GameActionObjec
   if(action.type === 'RESET_GAME') {
     const newState = { ...state };
 
+    // Reset the game data and go back to the menu.
+
     newState.gameData = null as any;
     newState.scene = 'WELCOME';
+
+    // Leave the room if we are even in a multiplayer room.
+    socket.emit('leaveRoom');
+
+    return newState;
+  }
+  if(action.type === 'HANDLE_MULTIPLAYER_REMATCH') {
+    const newState = { ...state };
+
+    socket.emit('rematchRequest');
 
     return newState;
   }

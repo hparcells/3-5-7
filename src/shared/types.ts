@@ -31,4 +31,6 @@ export interface Game {
   activeRow: RowIndex;
   /** The index of the winner of the game. */
   winner: number;
+  /** An array of usernames of players who want a rematch. */
+  rematchVotes: string[];
 }

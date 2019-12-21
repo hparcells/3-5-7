@@ -6,12 +6,14 @@ function TextField(
   {
     children,
     value,
-    onChange
+    onChange,
+    onBlur
   }:
   {
     children: string,
     value?: any,
-    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => any
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => any,
+    onBlur?: ((event: React.FocusEvent<HTMLInputElement>) => void)
   }
 ) {
   return (
@@ -21,6 +23,7 @@ function TextField(
       className={classes.root}
       value={value}
       onChange={onChange}
+      onBlur={onBlur}
     />
   );
 }
